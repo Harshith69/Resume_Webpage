@@ -493,7 +493,7 @@ section {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .about-text {
