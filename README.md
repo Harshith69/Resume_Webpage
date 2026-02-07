@@ -317,11 +317,11 @@ Found a bug or want to improve the template?
 
 **Harshith Narasimhamurthy**
 - Email: harshithnchandan@gmail.com
-- LinkedIn: [linkedin.com/in/harshith-narasimhamurthy-497578155](https://www.linkedin.com/in/harshith-narasimhamurthy-497578155/)
+- LinkedIn: [linkedin.com/in/harshith-narasimhamurthy-497578155](https://www.linkedin.com/in/harshithnarasimhamurthy69/)
 - GitHub: [github.com/Harshith69](https://github.com/Harshith69)
 
 ---
 
 ⭐ **Star this repository** if you found it helpful!
 
-Built with ❤️ by Harshith Narasimhamurthy
+Built by Harshith Narasimhamurthy
