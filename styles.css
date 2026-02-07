@@ -190,28 +190,29 @@ body {
 /* ===================================
    Resume Button in Navigation
    =================================== */
+/* Make Resume Button match "View My Work" button */
 .btn-resume {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1.2rem;
-    background: rgba(0, 217, 255, 0.1);
-    color: var(--color-accent);
+    padding: 0.9rem 1.5rem; /* Match button size */
+    background: var(--color-accent); /* Solid blue */
+    color: var(--color-bg-primary); /* Dark text */
     text-decoration: none;
     border-radius: var(--radius-md);
-    border: 1px solid var(--color-accent);
-    font-size: 0.9rem;
+    border: 2px solid transparent; /* No border like primary button */
+    font-size: 0.95rem;
     font-weight: 600;
     font-family: var(--font-body);
     transition: all var(--transition-normal);
     margin-right: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3); /* Match shadow */
 }
 
 .btn-resume:hover {
-    background: var(--color-accent);
-    color: var(--color-bg-primary);
+    background: var(--color-accent-dark); /* Darker blue on hover */
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 6px 20px rgba(0, 217, 255, 0.4); /* Enhanced shadow */
 }
 
 .btn-resume i {
