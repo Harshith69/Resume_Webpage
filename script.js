@@ -67,10 +67,7 @@ navLinks.forEach(link => {
 // ===================================
 const typingText = document.getElementById('typingText');
 const titles = [
-    'Data Scientist',
-    'ML Engineer',
-    'Geospatial Analyst',
-    'Cloud Analytics Expert'
+    'Data Scientist'
 ];
 
 let titleIndex = 0;
@@ -312,7 +309,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ===================================
 // Page Load Animation
-// ===================================
+// ===================================F
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     setTimeout(() => {
