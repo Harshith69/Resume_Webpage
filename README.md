@@ -14,7 +14,7 @@ A modern, responsive portfolio website showcasing my work as a Data Scientist sp
 
 ## 🚀 Live Demo
 
-Visit the live site: `https://[your-username].github.io/Resume_Webpage/`
+Visit the live site: `https://harshith69.github.io/Resume_Webpage/`
 
 ## 📁 Project Structure
 
