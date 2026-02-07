@@ -564,7 +564,7 @@ section {
 .image-container {
     position: relative;
     width: 100%;
-    padding-top: 120%;
+    height: 600px;
     border-radius: var(--radius-lg);
     overflow: hidden;
 }
