@@ -1,0 +1,40 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# Node Modules (if you add any build tools later)
+node_modules/
+
+# Build Output (if you add build process)
+dist/
+build/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# Backup Files
+*.bak
+*.backup
+
+# Optional: Uncomment if you don't want to track certain assets
+# assets/images/raw/
+# assets/docs/drafts/
