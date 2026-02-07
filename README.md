@@ -1,22 +1,12 @@
-# Harshith Narasimhamurthy - Data Scientist Portfolio
+# Harshith Narasimhamurthy - Data Scientist
 
-A modern, responsive portfolio website showcasing my work as a Data Scientist specializing in geospatial intelligence, machine learning, and cloud-native analytics.
+I'm a AI enabled Data Scientist with a passion for transforming complex data into strategic business solutions. With 3 years of hands-on experience in building and deploying production-grade ML models, I specialize in geospatial intelligence, time-series forecasting, and cloud-native analytics.
 
-
-## 🌟 Features
-
-- **Modern Design**: Dark theme with cyan accents and data-driven aesthetic
-- **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
-- **Interactive Animations**: Smooth scroll effects, typing animation, and parallax backgrounds
-- **Performance Optimized**: Fast loading with clean, semantic HTML
-- **SEO Ready**: Meta tags and Open Graph support
-- **Accessible**: ARIA labels and proper heading hierarchy
-
-## 🚀 Live Demo
+## 🚀 Resume Webpage
 
 Visit the live site: [https://harshith69.github.io/Resume_Webpage/]
 
 
 ⭐ **Star this repository** if you found it helpful!
 
-Built by Harshith Narasimhamurthy
+Developed by Harshith Narasimhamurthy
