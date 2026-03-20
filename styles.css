@@ -908,6 +908,106 @@ section {
 }
 
 /* ===================================
+   Project Link Buttons
+   =================================== */
+.project-links {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.25rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    text-decoration: none;
+    border-radius: 30px;
+    border: 1.5px solid var(--color-accent);
+    color: var(--color-accent);
+    background: rgba(0, 217, 255, 0.06);
+    transition: all var(--transition-normal);
+    letter-spacing: 0.5px;
+}
+
+.project-link-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-bg-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 217, 255, 0.35);
+}
+
+.project-link-btn--live {
+    border-color: #00e676;
+    color: #00e676;
+    background: rgba(0, 230, 118, 0.06);
+}
+
+.project-link-btn--live:hover {
+    background: #00e676;
+    color: var(--color-bg-primary);
+    box-shadow: 0 6px 20px rgba(0, 230, 118, 0.35);
+}
+
+/* Project overlay link */
+.overlay-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-bg-primary);
+    color: var(--color-accent);
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    transition: all var(--transition-normal);
+    border: 1.5px solid transparent;
+}
+
+.overlay-link:hover {
+    background: var(--color-accent);
+    color: var(--color-bg-primary);
+    transform: scale(1.05);
+}
+
+/* Colored placeholder variants for new projects */
+.project-placeholder--f1 {
+    background: linear-gradient(135deg, #0d0d1a, #1a0a2e) !important;
+}
+
+.project-placeholder--f1 i {
+    color: #ff1e00 !important;
+    opacity: 0.7 !important;
+}
+
+.project-placeholder--sentiment {
+    background: linear-gradient(135deg, #0a1a0d, #0d1a1a) !important;
+}
+
+.project-placeholder--sentiment i {
+    color: #00e676 !important;
+    opacity: 0.7 !important;
+}
+
+.project-placeholder--automation {
+    background: linear-gradient(135deg, #1a1200, #0d1a1a) !important;
+}
+
+.project-placeholder--automation i {
+    color: #ffd600 !important;
+    opacity: 0.7 !important;
+}
+
+/* ===================================
    Skills Section
    =================================== */
 .skills-content {
