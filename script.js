@@ -309,7 +309,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ===================================
 // Page Load Animation
-// ===================================F
+// ===================================
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     setTimeout(() => {
