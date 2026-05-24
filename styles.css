@@ -955,6 +955,22 @@ section {
     box-shadow: 0 6px 20px rgba(0, 230, 118, 0.35);
 }
 
+/* Disabled / unavailable variant — used when no public live demo exists */
+.project-link-btn--disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+    border-color: var(--color-text-secondary);
+    color: var(--color-text-secondary);
+    background: transparent;
+}
+
+.project-link-btn--disabled:hover {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-color: var(--color-text-secondary);
+}
+
 /* Project overlay link */
 .overlay-link {
     display: inline-flex;
@@ -986,24 +1002,6 @@ section {
 
 .project-placeholder--f1 i {
     color: #ff1e00 !important;
-    opacity: 0.7 !important;
-}
-
-.project-placeholder--sentiment {
-    background: linear-gradient(135deg, #0a1a0d, #0d1a1a) !important;
-}
-
-.project-placeholder--sentiment i {
-    color: #00e676 !important;
-    opacity: 0.7 !important;
-}
-
-.project-placeholder--automation {
-    background: linear-gradient(135deg, #1a1200, #0d1a1a) !important;
-}
-
-.project-placeholder--automation i {
-    color: #ffd600 !important;
     opacity: 0.7 !important;
 }
 

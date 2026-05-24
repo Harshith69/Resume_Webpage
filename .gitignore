@@ -34,7 +34,7 @@ build/
 # Backup Files
 *.bak
 *.backup
-
+*.kiro
 # Optional: Uncomment if you don't want to track certain assets
 # assets/images/raw/
 # assets/docs/drafts/
