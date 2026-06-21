@@ -58,41 +58,49 @@
 
     <!-- ==================== HERO ==================== -->
     <section id="home" class="hero">
-        <div class="hero-inner">
-            <div class="hero-left">
-                <p class="hero-label" data-anim="fade-up">Data Scientist</p>
-                <p class="hero-label" data-anim="fade-up">&amp; ML Engineer</p>
-                <div class="hero-scroll">
-                    <span>Scroll down</span>
-                    <div class="scroll-line"></div>
-                </div>
+        <!-- top meta row -->
+        <div class="hero-meta">
+            <div class="hero-meta-left">
+                <p>Data Scientist</p>
+                <p>&amp; ML Engineer</p>
             </div>
-            <div class="hero-center">
-                <div class="hero-photo-wrapper">
-                    <img src="Linkedin_photo.jpg" alt="Harshith Narasimhamurthy" class="hero-photo">
-                </div>
-            </div>
-            <div class="hero-right">
-                <div class="hero-stats">
-                    <div class="stat" data-anim="fade-up">
-                        <span class="stat-num" data-target="3">0</span>
-                        <span class="stat-text">Years<br>Experience</span>
-                    </div>
-                    <div class="stat" data-anim="fade-up">
-                        <span class="stat-num" data-target="6">0</span>
-                        <span class="stat-text">Projects<br>Delivered</span>
-                    </div>
-                    <div class="stat" data-anim="fade-up">
-                        <span class="stat-num" data-target="95">0</span>
-                        <span class="stat-text">Accuracy<br>Rate %</span>
-                    </div>
-                </div>
+            <div class="hero-meta-right">
+                <p>Based in</p>
+                <p>Bangalore, India</p>
             </div>
         </div>
-        <!-- Giant name behind the photo -->
-        <div class="hero-name-bg" aria-hidden="true">
-            <span data-anim="slide-up">HARSHITH</span>
-            <span data-anim="slide-up">NARASIMHAMURTHY</span>
+
+        <!-- Giant name (solid) sits BEHIND the cutout photo -->
+        <div class="hero-stage">
+            <h1 class="hero-name" aria-label="Harshith Narasimhamurthy">
+                <span class="hero-name-line line-1">HARSHITH</span>
+                <span class="hero-name-line line-2">NARASIMHA</span>
+            </h1>
+            <div class="hero-photo-layer">
+                <img src="Harshith_photo.png" alt="Harshith Narasimhamurthy" class="hero-photo" id="heroPhoto">
+            </div>
+        </div>
+
+        <!-- bottom row: scroll + stats -->
+        <div class="hero-bottom">
+            <div class="hero-scroll">
+                <span>Scroll down</span>
+                <div class="scroll-line"></div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat" data-tilt>
+                    <span class="stat-num" data-target="3">0</span>
+                    <span class="stat-text">Years<br>Experience</span>
+                </div>
+                <div class="stat" data-tilt>
+                    <span class="stat-num" data-target="6">0</span>
+                    <span class="stat-text">Projects<br>Delivered</span>
+                </div>
+                <div class="stat" data-tilt>
+                    <span class="stat-num" data-target="95">0</span>
+                    <span class="stat-text">Accuracy<br>Rate %</span>
+                </div>
+            </div>
         </div>
     </section>
 

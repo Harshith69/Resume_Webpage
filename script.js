@@ -122,6 +122,74 @@ contactForm.addEventListener('submit', (e) => {
 });
 
 // ===================================
+// Hero Scroll Parallax  (photo + name move at different rates)
+// ===================================
+const heroPhotoLayer = document.querySelector('.hero-photo-layer');
+const heroName = document.querySelector('.hero-name');
+const heroMeta = document.querySelector('.hero-meta');
+let latestScroll = 0, parallaxTicking = false;
+
+function applyParallax() {
+    const y = latestScroll;
+    if (y < window.innerHeight) {
+        // photo scales up & drifts down slowly; name drifts up; subtle fade
+        if (heroPhotoLayer) heroPhotoLayer.style.transform = `translateY(${y * 0.18}px) scale(${1 + y * 0.0004})`;
+        if (heroName) heroName.style.transform = `translate(-50%,-50%) translateY(${y * -0.12}px)`;
+        if (heroMeta) heroMeta.style.opacity = Math.max(0, 1 - y / 400);
+    }
+    parallaxTicking = false;
+}
+window.addEventListener('scroll', () => {
+    latestScroll = window.scrollY;
+    if (!parallaxTicking) { requestAnimationFrame(applyParallax); parallaxTicking = true; }
+}, { passive: true });
+
+// ===================================
+// 3D Tilt on cards & interactive blocks
+// ===================================
+const tiltEls = document.querySelectorAll('.project-detail, .edu-card, .stat, .skill-group, [data-tilt]');
+tiltEls.forEach(el => {
+    el.style.transformStyle = 'preserve-3d';
+    el.style.transition = 'transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease';
+    el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(900px) rotateX(${py * -8}deg) rotateY(${px * 10}deg) translateZ(12px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+        el.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateZ(0)';
+    });
+});
+
+// ===================================
+// 3D Click Pop
+// ===================================
+document.querySelectorAll('.project-detail, .edu-card, .stat, .skill-pills span, .btn-hire, .contact-socials a').forEach(el => {
+    el.addEventListener('click', () => {
+        el.classList.remove('tilt-pop');
+        void el.offsetWidth;            // reflow to restart animation
+        el.classList.add('tilt-pop');
+    });
+});
+
+// ===================================
+// Hero photo subtle mouse-follow (depth)
+// ===================================
+const heroSec = document.getElementById('home');
+if (heroSec && window.matchMedia('(hover:hover)').matches) {
+    heroSec.addEventListener('mousemove', e => {
+        if (window.scrollY > window.innerHeight) return;
+        const cx = e.clientX / window.innerWidth - 0.5;
+        const cy = e.clientY / window.innerHeight - 0.5;
+        if (heroPhotoLayer) heroPhotoLayer.style.transform += '';
+        const photo = document.getElementById('heroPhoto');
+        if (photo) photo.style.transform = `translate(${cx * 18}px, ${cy * 12}px)`;
+        if (heroName) heroName.style.transform = `translate(-50%,-50%) translate(${cx * -22}px, ${cy * -14}px)`;
+    });
+}
+
+// ===================================
 // Back to Top
 // ===================================
 const btt = document.getElementById('backToTop');
