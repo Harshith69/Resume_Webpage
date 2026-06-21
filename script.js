@@ -126,16 +126,13 @@ contactForm.addEventListener('submit', (e) => {
 // ===================================
 const heroPhotoLayer = document.querySelector('.hero-photo-layer');
 const heroName = document.querySelector('.hero-name');
-const heroMeta = document.querySelector('.hero-meta');
 let latestScroll = 0, parallaxTicking = false;
 
 function applyParallax() {
     const y = latestScroll;
     if (y < window.innerHeight) {
-        // photo scales up & drifts down slowly; name drifts up; subtle fade
-        if (heroPhotoLayer) heroPhotoLayer.style.transform = `translateY(${y * 0.18}px) scale(${1 + y * 0.0004})`;
-        if (heroName) heroName.style.transform = `translate(-50%,-50%) translateY(${y * -0.12}px)`;
-        if (heroMeta) heroMeta.style.opacity = Math.max(0, 1 - y / 400);
+        if (heroPhotoLayer) heroPhotoLayer.style.transform = `translateY(${y * 0.15}px) scale(${1 + y * 0.0003})`;
+        if (heroName) heroName.style.transform = `translateY(${y * -0.1}px)`;
     }
     parallaxTicking = false;
 }
@@ -147,7 +144,7 @@ window.addEventListener('scroll', () => {
 // ===================================
 // 3D Tilt on cards & interactive blocks
 // ===================================
-const tiltEls = document.querySelectorAll('.project-detail, .edu-card, .stat, .skill-group, [data-tilt]');
+const tiltEls = document.querySelectorAll('.project-card, .edu-card, .stat, .skill-group, [data-tilt]');
 tiltEls.forEach(el => {
     el.style.transformStyle = 'preserve-3d';
     el.style.transition = 'transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease';
@@ -165,7 +162,7 @@ tiltEls.forEach(el => {
 // ===================================
 // 3D Click Pop
 // ===================================
-document.querySelectorAll('.project-detail, .edu-card, .stat, .skill-pills span, .btn-hire, .contact-socials a').forEach(el => {
+document.querySelectorAll('.project-card, .edu-card, .stat, .skill-pills span, .btn-hire, .contact-socials a').forEach(el => {
     el.addEventListener('click', () => {
         el.classList.remove('tilt-pop');
         void el.offsetWidth;            // reflow to restart animation
@@ -182,10 +179,8 @@ if (heroSec && window.matchMedia('(hover:hover)').matches) {
         if (window.scrollY > window.innerHeight) return;
         const cx = e.clientX / window.innerWidth - 0.5;
         const cy = e.clientY / window.innerHeight - 0.5;
-        if (heroPhotoLayer) heroPhotoLayer.style.transform += '';
         const photo = document.getElementById('heroPhoto');
-        if (photo) photo.style.transform = `translate(${cx * 18}px, ${cy * 12}px)`;
-        if (heroName) heroName.style.transform = `translate(-50%,-50%) translate(${cx * -22}px, ${cy * -14}px)`;
+        if (photo) photo.style.transform = `translate(${cx * 14}px, ${cy * 10}px)`;
     });
 }
 

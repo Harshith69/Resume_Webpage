@@ -58,49 +58,41 @@
 
     <!-- ==================== HERO ==================== -->
     <section id="home" class="hero">
-        <!-- top meta row -->
-        <div class="hero-meta">
-            <div class="hero-meta-left">
-                <p>Data Scientist</p>
-                <p>&amp; ML Engineer</p>
+        <div class="hero-split">
+            <!-- LEFT: name + label + stats -->
+            <div class="hero-col-left">
+                <p class="hero-label" data-anim="fade-up">Data Scientist | ML Engineer | Generative AI</p>
+                <h1 class="hero-name">
+                    <span class="hero-name-line line-1">HARSHITH</span>
+                    <span class="hero-name-line line-2">NARASIMHA</span>
+                    <span class="hero-name-line line-3">MURTHY</span>
+                </h1>
+                <p class="hero-tagline" data-anim="fade-up">Building production ML systems &amp; GenAI solutions that drive real business impact.</p>
+                <div class="hero-stats">
+                    <div class="stat" data-tilt>
+                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-text">Years<br>Experience</span>
+                    </div>
+                    <div class="stat" data-tilt>
+                        <span class="stat-num" data-target="5">0</span>
+                        <span class="stat-text">ML Products<br>Shipped</span>
+                    </div>
+                    <div class="stat" data-tilt>
+                        <span class="stat-num" data-target="90">0</span>
+                        <span class="stat-text">Accuracy<br>Rate %</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero-meta-right">
-                <p>Based in</p>
-                <p>Bangalore, India</p>
+            <!-- RIGHT: photo -->
+            <div class="hero-col-right">
+                <div class="hero-photo-layer">
+                    <img src="Harshith_photo.png" alt="Harshith Narasimhamurthy" class="hero-photo" id="heroPhoto">
+                </div>
             </div>
         </div>
-
-        <!-- Giant name (solid) sits BEHIND the cutout photo -->
-        <div class="hero-stage">
-            <h1 class="hero-name" aria-label="Harshith Narasimhamurthy">
-                <span class="hero-name-line line-1">HARSHITH</span>
-                <span class="hero-name-line line-2">NARASIMHA</span>
-            </h1>
-            <div class="hero-photo-layer">
-                <img src="Harshith_photo.png" alt="Harshith Narasimhamurthy" class="hero-photo" id="heroPhoto">
-            </div>
-        </div>
-
-        <!-- bottom row: scroll + stats -->
-        <div class="hero-bottom">
-            <div class="hero-scroll">
-                <span>Scroll down</span>
-                <div class="scroll-line"></div>
-            </div>
-            <div class="hero-stats">
-                <div class="stat" data-tilt>
-                    <span class="stat-num" data-target="3">0</span>
-                    <span class="stat-text">Years<br>Experience</span>
-                </div>
-                <div class="stat" data-tilt>
-                    <span class="stat-num" data-target="6">0</span>
-                    <span class="stat-text">Projects<br>Delivered</span>
-                </div>
-                <div class="stat" data-tilt>
-                    <span class="stat-num" data-target="95">0</span>
-                    <span class="stat-text">Accuracy<br>Rate %</span>
-                </div>
-            </div>
+        <div class="hero-scroll">
+            <span>Scroll down</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
@@ -149,16 +141,15 @@
             <h2 class="section-big-title section-big-title--light" data-anim="fade-up">/EXPERIENCE</h2>
             <div class="exp-grid">
                 <div class="exp-card" data-anim="fade-up">
-                    <div class="exp-date">JULY 2023 — PRESENT</div>
+                    <div class="exp-date">JUL 2023 — PRESENT</div>
                     <div class="exp-content">
-                        <h3 class="exp-role">Data Scientist</h3>
+                        <h3 class="exp-role">Data Analyst</h3>
                         <h4 class="exp-company">SatSure Analytics <span>• Bengaluru, India</span></h4>
                         <ul class="exp-list">
-                            <li>Built and deployed a <strong>geospatial credit scoring model (~90% accuracy)</strong> that enabled banks to assess loan risk across 50K+ rural borrowers using satellite-derived features and ensemble ML</li>
-                            <li>Engineered an insurance recovery prediction pipeline that drove <strong>~20% uplift in on-time loan collections</strong>, directly improving portfolio performance for 3 banking clients</li>
-                            <li>Owned the full ML lifecycle across <strong>5 shipped products</strong> — feature engineering, hyperparameter tuning, <strong>MLflow experiment tracking</strong>, FastAPI serving, Docker containerization, and CI/CD on AWS (S3, Athena, EC2, ECR, EKS)</li>
-                            <li>Designed and automated scalable ETL/ELT pipelines using <strong>Apache Airflow + Apache Iceberg</strong> on AWS, cutting data processing latency by <strong>~25%</strong> and eliminating manual data-quality interventions</li>
-                            <li>Awarded <strong>"Customer Champion"</strong> — the only individual contributor recognized company-wide for shipping high-impact, client-facing ML solutions</li>
+                            <li>Built geospatial credit scoring model (<strong>Random Forest + satellite NDVI features</strong>) achieving <strong>~90% accuracy</strong> in farmer creditworthiness; adopted by partner banks to accelerate agricultural loan underwriting</li>
+                            <li>Designed insurance recovery pipeline integrating predictive risk scores with field-agent workflows, driving <strong>~20% uplift in on-time loan collections</strong> (FY 2025–26)</li>
+                            <li>Automated ETL/ELT pipelines on <strong>Apache Airflow + AWS (S3, Athena, EC2)</strong>, reducing data processing latency by <strong>~25%</strong> and improving downstream analytics SLA reliability</li>
+                            <li>Recognized as <strong>Customer Champion</strong> for sustained enterprise impact across 3+ banking and insurance clients through reliable model delivery and stakeholder collaboration</li>
                         </ul>
                     </div>
                 </div>
@@ -168,9 +159,7 @@
                         <h3 class="exp-role">ML Research Intern</h3>
                         <h4 class="exp-company">Western Sydney University <span>• Sydney, Australia</span></h4>
                         <ul class="exp-list">
-                            <li>Researched and implemented time-series forecasting models (<strong>LSTM, ARIMA</strong>) for agricultural crop and price prediction</li>
-                            <li>Designed preprocessing and validation workflows, improving forecasting accuracy by <strong>~12%</strong> while reducing manual analytical effort</li>
-                            <li>Published research papers on deep learning architectures for agricultural commodity price forecasting</li>
+                            <li>Developed <strong>LSTM &amp; ARIMA</strong> time-series forecasting models for crop yield prediction; engineered preprocessing and cross-validation workflows improving forecasting accuracy by <strong>~12%</strong> over baseline</li>
                         </ul>
                     </div>
                 </div>
@@ -181,99 +170,90 @@
     <!-- ==================== PROJECTS / WORK ==================== -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-big-title" data-anim="fade-up">/WORK</h2>
-            <div class="projects-list">
+            <h2 class="section-big-title" data-anim="fade-up">/PROJECTS</h2>
+            <div class="project-cards-grid">
 
                 <!-- NovaPay -->
-                <a href="https://huggingface.co/spaces/Harshith69/novapay-support-agent" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
-                    <span class="project-name">NovaPay — Multi-Agent AI Support</span>
-                    <span class="project-cat">GenAI / RAG / QLoRA</span>
-                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
+                <div class="project-card" data-anim="fade-up" data-tilt>
+                    <div class="pc-header">
+                        <span class="pc-num">01</span>
+                        <div class="pc-links">
+                            <a href="https://huggingface.co/spaces/Harshith69/novapay-support-agent" target="_blank" rel="noopener" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/Harshith69/novapay-support-agent" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="pc-title">NovaPay — Multi-Agent AI Customer Support</h3>
+                    <p class="pc-desc">Architected multi-agent orchestration with QLoRA fine-tuned triage routing to RAG-grounded specialists; scored 4.9/5.0 on LLM-as-Judge and handled 15/15 adversarial attacks, deployed live on HF Spaces at $0 infra cost.</p>
+                    <div class="pc-metrics">
+                        <div><strong>4.9/5.0</strong><span>Judge Score</span></div>
+                        <div><strong>15/15</strong><span>Adversarial Safe</span></div>
+                        <div><strong>0.74</strong><span>BERTScore F1</span></div>
+                    </div>
+                    <div class="pc-tags">
+                        <span>Gemma-3 4B</span><span>QLoRA</span><span>RAG</span><span>LangChain</span><span>ChromaDB</span><span>LLM-as-Judge</span><span>HuggingFace Spaces</span>
+                    </div>
+                </div>
+
+                <!-- F1 SQL Assistant -->
+                <div class="project-card" data-anim="fade-up" data-tilt>
+                    <div class="pc-header">
+                        <span class="pc-num">02</span>
+                        <div class="pc-links">
+                            <a href="https://text-to-sql-chatbots.streamlit.app/" target="_blank" rel="noopener" title="Live App"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="pc-title">Formula 1 AI SQL Assistant</h3>
+                    <p class="pc-desc">Built production Text-to-SQL agent with conversation memory, self-correction logic, and SELECT-only guardrails; enables zero-SQL natural language querying over live structured F1 race data via REST API.</p>
+                    <div class="pc-tags">
+                        <span>Groq LLaMA 3.3 70B</span><span>LangChain</span><span>FastAPI</span><span>Text-to-SQL</span>
+                    </div>
+                </div>
 
                 <!-- Customer Segmentation -->
-                <a href="https://customer-segmentation-mlops-pipeline.streamlit.app/" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
-                    <span class="project-name">Customer Segmentation MLOps</span>
-                    <span class="project-cat">MLOps / KMeans / Streamlit</span>
-                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
+                <div class="project-card" data-anim="fade-up" data-tilt>
+                    <div class="pc-header">
+                        <span class="pc-num">03</span>
+                        <div class="pc-links">
+                            <a href="https://customer-segmentation-mlops-pipeline.streamlit.app/" target="_blank" rel="noopener" title="Live App"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="pc-title">Customer Segmentation MLOps Pipeline</h3>
+                    <p class="pc-desc">Architected full MLOps lifecycle for RFM + behavioral customer segmentation; tracked experiments via MLflow + DagsHub. Deployed via FastAPI + Streamlit, containerized with Docker, automated CI/CD via GitHub Actions.</p>
+                    <div class="pc-tags">
+                        <span>KMeans</span><span>MLflow</span><span>DagsHub</span><span>FastAPI</span><span>Streamlit</span><span>Docker</span><span>MongoDB</span>
+                    </div>
+                </div>
 
-                <!-- Fraud Detection -->
-                <div class="project-row project-row--disabled" data-anim="fade-up">
-                    <span class="project-name">Fraud Detection Pipeline</span>
-                    <span class="project-cat">XGBoost / LightGBM / DVC</span>
-                    <span class="project-arrow"><i class="fas fa-lock"></i></span>
+                <!-- Crop Health -->
+                <div class="project-card" data-anim="fade-up" data-tilt>
+                    <div class="pc-header">
+                        <span class="pc-num">04</span>
+                        <div class="pc-links">
+                            <a href="https://docs.google.com/videos/d/1yw7nqyyt-rvHSSWXixLQHh-KsTT5Cf-8bdaTJ9q3XvM/edit?usp=drive_link" target="_blank" rel="noopener" title="Demo Video"><i class="fas fa-play-circle"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="pc-title">Real-Time Crop Health Monitoring</h3>
+                    <p class="pc-desc">Deployed 10m × 10m NDVI time-series platform with K-Means health classification (Good/Average/Poor); achieved ~95% damage-detection accuracy, adopted by banks and insurers for loan underwriting at scale.</p>
+                    <div class="pc-tags">
+                        <span>NDVI</span><span>K-Means</span><span>Geospatial ML</span><span>AWS</span><span>Time Series</span>
+                    </div>
                 </div>
 
                 <!-- Bank Branch -->
-                <a href="https://drive.google.com/file/d/1UOGeYkZ3Nz_brYXS1qo3EwQsxJHUpSrR/view?usp=drive_link" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
-                    <span class="project-name">Bank Branch Expansion</span>
-                    <span class="project-cat">Geospatial / ML</span>
-                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-                <!-- Crop Health -->
-                <a href="https://docs.google.com/videos/d/1yw7nqyyt-rvHSSWXixLQHh-KsTT5Cf-8bdaTJ9q3XvM/edit?usp=drive_link" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
-                    <span class="project-name">Real-Time Crop Health Monitoring</span>
-                    <span class="project-cat">NDVI / Time Series</span>
-                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-                <!-- F1 SQL -->
-                <a href="https://text-to-sql-chatbots.streamlit.app/" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
-                    <span class="project-name">F1 AI SQL Assistant</span>
-                    <span class="project-cat">LLM / Text-to-SQL</span>
-                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-            </div>
-
-            <!-- Expanded project detail cards -->
-            <div class="project-details-grid">
-                <div class="project-detail" data-anim="fade-up">
-                    <div class="pd-header">
-                        <span class="pd-num">01</span>
-                        <h3>NovaPay — Multi-Agent AI</h3>
+                <div class="project-card" data-anim="fade-up" data-tilt>
+                    <div class="pc-header">
+                        <span class="pc-num">05</span>
+                        <div class="pc-links">
+                            <a href="https://drive.google.com/file/d/1UOGeYkZ3Nz_brYXS1qo3EwQsxJHUpSrR/view?usp=drive_link" target="_blank" rel="noopener" title="Report"><i class="fas fa-file-alt"></i></a>
+                        </div>
                     </div>
-                    <p>Production-grade multi-agent AI system for fintech support. Fine-tuned Gemma-3 4B via QLoRA routes queries to RAG-grounded specialist agents powered by Llama 3.3 70B. Includes hallucination detection, adversarial robustness testing, and a real-time ops dashboard.</p>
-                    <div class="pd-metrics">
-                        <div><strong>4.9/5.0</strong> Judge Score</div>
-                        <div><strong>15/15</strong> Adversarial Safe</div>
-                        <div><strong>0.74</strong> BERTScore F1</div>
-                    </div>
-                    <div class="pd-tags">
-                        <span>GenAI</span><span>Multi-Agent</span><span>QLoRA</span><span>RAG</span><span>ChromaDB</span><span>LLM-as-Judge</span><span>Gradio</span>
-                    </div>
-                    <div class="pd-links">
-                        <a href="https://huggingface.co/spaces/Harshith69/novapay-support-agent" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://github.com/Harshith69/novapay-support-agent" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                    <h3 class="pc-title">Bank Branch Expansion Analysis</h3>
+                    <p class="pc-desc">Geospatial analysis and ML-driven site selection for optimal bank branch placement, leveraging demographic, economic, and satellite-derived features.</p>
+                    <div class="pc-tags">
+                        <span>Geospatial ML</span><span>Random Forest</span><span>Site Selection</span>
                     </div>
                 </div>
 
-                <div class="project-detail" data-anim="fade-up">
-                    <div class="pd-header">
-                        <span class="pd-num">02</span>
-                        <h3>Customer Segmentation MLOps</h3>
-                    </div>
-                    <p>End-to-end MLOps pipeline using KMeans clustering on RFM features. MLflow + DagsHub for reproducibility, FastAPI serving, Docker containerization, and GitHub Actions CI/CD.</p>
-                    <div class="pd-tags">
-                        <span>MLOps</span><span>KMeans</span><span>MLflow</span><span>FastAPI</span><span>Docker</span><span>Streamlit</span>
-                    </div>
-                    <div class="pd-links">
-                        <a href="https://customer-segmentation-mlops-pipeline.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live App</a>
-                    </div>
-                </div>
-
-                <div class="project-detail" data-anim="fade-up">
-                    <div class="pd-header">
-                        <span class="pd-num">03</span>
-                        <h3>Fraud Detection Pipeline</h3>
-                    </div>
-                    <p>Production-grade fraud detection benchmarking XGBoost and LightGBM on imbalanced data, with MLflow tracking, DVC versioning, Optuna tuning, and FastAPI inference.</p>
-                    <div class="pd-tags">
-                        <span>MLOps</span><span>XGBoost</span><span>LightGBM</span><span>MLflow</span><span>DVC</span><span>FastAPI</span>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
