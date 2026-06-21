@@ -1,248 +1,106 @@
 // ===================================
-// Scroll Progress Indicator
+// Scroll Progress
 // ===================================
 const scrollProgress = document.getElementById('scrollProgress');
-
 window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    scrollProgress.style.width = scrolled + '%';
+    const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    scrollProgress.style.width = (window.scrollY / h * 100) + '%';
 });
 
 // ===================================
-// Navigation - Scroll Effect & Active Links
+// Cursor Follower
+// ===================================
+const dot = document.getElementById('cursorDot');
+if (window.matchMedia('(hover:hover)').matches) {
+    document.addEventListener('mousemove', e => {
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .project-row').forEach(el => {
+        el.addEventListener('mouseenter', () => dot.style.transform = 'translate(-50%,-50%) scale(3)');
+        el.addEventListener('mouseleave', () => dot.style.transform = 'translate(-50%,-50%) scale(1)');
+    });
+}
+
+// ===================================
+// Navigation
 // ===================================
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section[id]');
-
-window.addEventListener('scroll', () => {
-    // Add shadow on scroll
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-    
-    // Highlight active navigation link
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 100) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// ===================================
-// Mobile Navigation Toggle
-// ===================================
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
+
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+
+    let current = '';
+    sections.forEach(s => {
+        if (window.pageYOffset >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href').substring(1) === current);
+    });
+});
 
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
 });
+navLinks.forEach(l => l.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+}));
 
-// Close menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+// ===================================
+// Scroll Animations (IntersectionObserver)
+// ===================================
+const animEls = document.querySelectorAll('[data-anim]');
+const animObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in-view');
     });
-});
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+animEls.forEach(el => animObs.observe(el));
 
 // ===================================
-// Typing Animation in Hero
+// Stat Counter Animation
 // ===================================
-const typingText = document.getElementById('typingText');
-const titles = [
-    'Data Scientist', 'Decision Scientist', 'ML Engineer'
-];
+const statNums = document.querySelectorAll('.stat-num');
+let statsAnimated = false;
 
-let titleIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typingSpeed = 150;
-
-function typeText() {
-    const currentTitle = titles[titleIndex];
-    
-    if (isDeleting) {
-        typingText.textContent = currentTitle.substring(0, charIndex - 1);
-        charIndex--;
-        typingSpeed = 50;
-    } else {
-        typingText.textContent = currentTitle.substring(0, charIndex + 1);
-        charIndex++;
-        typingSpeed = 150;
-    }
-    
-    if (!isDeleting && charIndex === currentTitle.length) {
-        // Pause at end of word
-        typingSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        titleIndex = (titleIndex + 1) % titles.length;
-        typingSpeed = 500;
-    }
-    
-    setTimeout(typeText, typingSpeed);
-}
-
-// Start typing animation
-setTimeout(typeText, 1000);
-
-// ===================================
-// Animated Counter for Stats
-// ===================================
-const statNumbers = document.querySelectorAll('.stat-number');
-let hasAnimated = false;
-
-function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
-    
-    const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-            element.textContent = Math.floor(current);
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
+function animateNum(el) {
+    const target = +el.dataset.target;
+    const dur = 2000;
+    const inc = target / (dur / 16);
+    let cur = 0;
+    const tick = () => {
+        cur += inc;
+        if (cur < target) { el.textContent = Math.floor(cur); requestAnimationFrame(tick); }
+        else el.textContent = target;
     };
-    
-    updateCounter();
+    tick();
 }
 
+const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting && !statsAnimated) {
+            statNums.forEach(animateNum);
+            statsAnimated = true;
+        }
+    });
+}, { threshold: 0.3 });
 const heroSection = document.querySelector('.hero');
-const observerOptions = {
-    threshold: 0.5
-};
-
-const heroObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !hasAnimated) {
-            statNumbers.forEach(stat => animateCounter(stat));
-            hasAnimated = true;
-        }
-    });
-}, observerOptions);
-
-if (heroSection) {
-    heroObserver.observe(heroSection);
-}
+if (heroSection) statsObs.observe(heroSection);
 
 // ===================================
-// Skill Progress Bars Animation
-// ===================================
-const skillBars = document.querySelectorAll('.skill-progress');
-
-const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const progressBar = entry.target;
-            const targetWidth = progressBar.getAttribute('data-progress');
-            progressBar.style.width = targetWidth + '%';
-        }
-    });
-}, {
-    threshold: 0.5
-});
-
-skillBars.forEach(bar => {
-    skillObserver.observe(bar);
-});
-
-// ===================================
-// Scroll Animations (AOS - Animate On Scroll)
-// ===================================
-const animatedElements = document.querySelectorAll('[data-aos]');
-
-const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('aos-animate');
-        }
-    });
-}, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -100px 0px'
-});
-
-animatedElements.forEach(el => {
-    scrollObserver.observe(el);
-});
-
-// ===================================
-// Data Particles Animation (Hero Background)
-// ===================================
-const dataParticles = document.getElementById('dataParticles');
-
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.style.position = 'absolute';
-    particle.style.width = '2px';
-    particle.style.height = '2px';
-    particle.style.background = 'rgba(0, 217, 255, 0.5)';
-    particle.style.borderRadius = '50%';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animation = `float ${5 + Math.random() * 10}s linear infinite`;
-    particle.style.opacity = Math.random() * 0.5 + 0.3;
-    
-    dataParticles.appendChild(particle);
-    
-    // Remove particle after animation
-    setTimeout(() => {
-        particle.remove();
-    }, 15000);
-}
-
-// Create particles periodically
-setInterval(createParticle, 300);
-
-// Add CSS animation for particles
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float {
-        0% {
-            transform: translateY(0) translateX(0);
-        }
-        50% {
-            transform: translateY(-100px) translateX(50px);
-        }
-        100% {
-            transform: translateY(-200px) translateX(100px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ===================================
-// Contact Form Handling
+// Contact Form (AJAX via FormSubmit)
 // ===================================
 const contactForm = document.getElementById('contactForm');
-
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = contactForm.querySelector('button[type="submit"]');
-    const origHTML = btn.innerHTML;
+    const btn = contactForm.querySelector('.btn-submit');
+    const orig = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     btn.disabled = true;
 
@@ -250,58 +108,36 @@ contactForm.addEventListener('submit', (e) => {
         method: 'POST',
         body: new FormData(contactForm),
         headers: { 'Accept': 'application/json' }
-    }).then(res => {
-        if (res.ok) {
+    }).then(r => {
+        if (r.ok) {
             contactForm.reset();
             btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-            btn.style.background = 'var(--color-accent)';
-            btn.style.color = '#0a0f1c';
-            setTimeout(() => { btn.innerHTML = origHTML; btn.disabled = false; btn.style.background = ''; btn.style.color = ''; }, 3000);
-        } else {
-            throw new Error('Form submission failed');
-        }
+            setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 3000);
+        } else throw new Error();
     }).catch(() => {
-        btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed — try again';
+        btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed';
         btn.disabled = false;
-        setTimeout(() => { btn.innerHTML = origHTML; }, 3000);
+        setTimeout(() => { btn.innerHTML = orig; }, 3000);
     });
 });
 
 // ===================================
-// Back to Top Button
+// Back to Top
 // ===================================
-const backToTop = document.getElementById('backToTop');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTop.classList.add('visible');
-    } else {
-        backToTop.classList.remove('visible');
-    }
-});
-
-backToTop.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
+btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 // ===================================
-// Smooth Scroll for Navigation Links
+// Smooth Scroll
 // ===================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) {
             window.scrollTo({
-                top: offsetPosition,
+                top: t.getBoundingClientRect().top + window.pageYOffset - 80,
                 behavior: 'smooth'
             });
         }
@@ -309,42 +145,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===================================
-// Page Load Animation
+// Page Load
 // ===================================
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.transition = 'opacity .6s ease';
         document.body.style.opacity = '1';
-    }, 100);
+    }, 50);
 });
-
-// ===================================
-// Prevent Right Click on Images (Optional)
-// ===================================
-// Uncomment if you want to prevent image downloads
-// document.addEventListener('contextmenu', (e) => {
-//     if (e.target.tagName === 'IMG') {
-//         e.preventDefault();
-//     }
-// });
-
-// ===================================
-// Console Message (Easter Egg)
-// ===================================
-console.log('%c🚀 Welcome to my portfolio!', 'color: #00d9ff; font-size: 20px; font-weight: bold;');
-console.log('%cLooking for a Data Scientist? Let\'s connect!', 'color: #e8eaed; font-size: 14px;');
-console.log('%c📧 harshithnchandan@gmail.com', 'color: #00d9ff; font-size: 14px;');
-
-// ===================================
-// Performance Monitoring (Optional)
-// ===================================
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = window.performance.timing;
-            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-            console.log(`%cPage Load Time: ${pageLoadTime}ms`, 'color: #00d9ff; font-size: 12px;');
-        }, 0);
-    });
-}

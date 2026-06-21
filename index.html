@@ -6,187 +6,146 @@
     <meta name="description" content="Data Scientist with 3+ years shipping production ML systems in banking, insurance & agribusiness. Specialising in MLOps, geospatial intelligence, LLMs, and cloud-native ML on AWS.">
     <meta name="keywords" content="Data Scientist, ML Engineer, MLOps, Machine Learning, Geospatial Analytics, LLM, RAG, LangChain, Python, SQL, AWS, Docker, MLflow, FastAPI">
     <meta name="author" content="Harshith Narasimhamurthy">
-    
-    <!-- Open Graph Meta Tags -->
+
     <meta property="og:title" content="Harshith Narasimhamurthy | Data Scientist & ML Engineer">
-    <meta property="og:description" content="Data Scientist with 3+ years shipping production ML systems in banking, insurance & agribusiness. Specialising in MLOps, geospatial intelligence, LLMs, and cloud-native ML on AWS.">
+    <meta property="og:description" content="Data Scientist with 3+ years shipping production ML systems in banking, insurance & agribusiness.">
     <meta property="og:type" content="website">
-    
+
     <title>Harshith Narasimhamurthy | Data Scientist</title>
-    
-    <!-- Google Fonts -->
+
+    <!-- Fonts: Bebas Neue for display, DM Sans for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="./styles.css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#x1f3af;</text></svg>">
 </head>
 <body>
-    <!-- Scroll Progress Indicator -->
+
+    <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Cursor follower -->
+    <div class="cursor-dot" id="cursorDot"></div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">Harshith<span class="accent-dot">.</span></a>
-            </div>
+            <a href="#home" class="nav-logo">HARSHITH<span class="dot">.</span></a>
             <ul class="nav-menu" id="navMenu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Work</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <!-- Resume Download Button -->
-            <a href="https://raw.githubusercontent.com/Harshith69/Resume_Webpage/main/HarshithNarasimhamurthy_DS.pdf" 
-               class="btn-resume" 
-               target="_blank" 
-               rel="noopener" 
-               download="Harshith_Narasimhamurthy_Resume.pdf">
-                <i class="fas fa-download"></i>
-                <span>Resume</span>
-            </a>
-            <div class="nav-socials">
-                <a href="https://www.linkedin.com/in/harshithnarasimhamurthy69/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/Harshith69" target="_blank" rel="noopener" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
+            <div class="nav-right">
+                <div class="nav-socials">
+                    <a href="https://www.linkedin.com/in/harshithnarasimhamurthy69/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Harshith69" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+                <a href="https://raw.githubusercontent.com/Harshith69/Resume_Webpage/main/HarshithNarasimhamurthy_DS.pdf"
+                   class="btn-hire" target="_blank" rel="noopener"
+                   download="Harshith_Narasimhamurthy_Resume.pdf">RESUME</a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ==================== HERO ==================== -->
     <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="grid-overlay"></div>
-            <div class="data-particles" id="dataParticles"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <p class="hero-greeting">Hello, I'm</p>
-                <h1 class="hero-name">
-                    <span class="name-part">Harshith</span>
-                    <span class="name-part">Narasimhamurthy</span>
-                </h1>
-                <div class="hero-title-container">
-                    <p class="hero-title">
-                        <span class="typing-text" id="typingText"></span>
-                        <span class="cursor">|</span>
-                    </p>
-                </div>
-                <p class="hero-subtitle">Building production ML systems & GenAI solutions that drive real business impact</p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        <div class="hero-inner">
+            <div class="hero-left">
+                <p class="hero-label" data-anim="fade-up">Data Scientist</p>
+                <p class="hero-label" data-anim="fade-up">&amp; ML Engineer</p>
+                <div class="hero-scroll">
+                    <span>Scroll down</span>
+                    <div class="scroll-line"></div>
                 </div>
             </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="3">0</span>
-                    <span class="stat-label">Years Experience</span>
+            <div class="hero-center">
+                <div class="hero-photo-wrapper">
+                    <img src="Linkedin_photo.jpg" alt="Harshith Narasimhamurthy" class="hero-photo">
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="6">0</span>
-                    <span class="stat-label">Projects Delivered</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="95">0</span>
-                    <span class="stat-label">Accuracy Rate</span>
+            </div>
+            <div class="hero-right">
+                <div class="hero-stats">
+                    <div class="stat" data-anim="fade-up">
+                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-text">Years<br>Experience</span>
+                    </div>
+                    <div class="stat" data-anim="fade-up">
+                        <span class="stat-num" data-target="6">0</span>
+                        <span class="stat-text">Projects<br>Delivered</span>
+                    </div>
+                    <div class="stat" data-anim="fade-up">
+                        <span class="stat-num" data-target="95">0</span>
+                        <span class="stat-text">Accuracy<br>Rate %</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <span>Scroll Down</span>
-            <div class="scroll-arrow"></div>
+        <!-- Giant name behind the photo -->
+        <div class="hero-name-bg" aria-hidden="true">
+            <span data-anim="slide-up">HARSHITH</span>
+            <span data-anim="slide-up">NARASIMHAMURTHY</span>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ==================== ABOUT ==================== -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get to know me</span>
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-intro">
-                        I'm a <strong>Data Scientist</strong> with 3+ years of experience building and deploying production ML systems that drive measurable business impact across banking, insurance, and agribusiness. At <strong>SatSure Analytics</strong>, I've shipped 5 end-to-end ML products — from a geospatial credit scoring model (~90% accuracy) to an insurance recovery pipeline that lifted on-time loan collections by ~20%.
-                    </p>
-                    <p>
-                        My work spans the full ML lifecycle — feature engineering, model training & tuning, experiment tracking (MLflow), API deployment (FastAPI), containerization (Docker), and CI/CD (GitHub Actions) on AWS. Most recently, I've been building <strong>Generative AI systems</strong>: multi-agent architectures with QLoRA fine-tuning, RAG pipelines, LLM-as-Judge evaluation, and adversarial robustness testing.
-                    </p>
-                    <p>
-                        I hold a <strong>Gold Medal in M.Sc. Agricultural Statistics</strong> (University Rank #1) and an <strong>All India Rank #6</strong> in B.Sc. Agriculture. I bring deep statistical foundations combined with hands-on engineering to every project.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-trophy"></i>
-                            <div>
-                                <h4>Customer Champion</h4>
-                                <p>SatSure Analytics</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-medal"></i>
-                            <div>
-                                <h4>Gold Medalist</h4>
-                                <p>M.Sc. Statistics</p>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <h4>AIR-6 Rank</h4>
-                                <p>B.Sc. Agriculture</p>
-                            </div>
-                        </div>
+            <div class="about-grid">
+                <div class="about-left">
+                    <h2 class="section-big-title" data-anim="fade-up">/ABOUT</h2>
+                    <div class="about-arrow" data-anim="fade-up">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M20 60L60 20M60 20H30M60 20V50" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div class="image-container">
-                        <img src="Linkedin_photo.jpg"
-                             alt="Harshith Narasimhamurthy" 
-                             style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg);">
-                        <div class="image-decoration"></div>
+                <div class="about-right">
+                    <blockquote class="about-quote" data-anim="fade-up">
+                        "Harshith is a Data Scientist with 3+ years of experience building and deploying production ML systems that drive measurable business impact across banking, insurance, and agribusiness. At SatSure Analytics, he's shipped 5 end-to-end ML products — from a geospatial credit scoring model (~90% accuracy) to an insurance recovery pipeline that lifted on-time loan collections by ~20%."
+                    </blockquote>
+                    <p class="about-body" data-anim="fade-up">
+                        His work spans the full ML lifecycle — feature engineering, model training & tuning, experiment tracking (MLflow), API deployment (FastAPI), containerization (Docker), and CI/CD (GitHub Actions) on AWS. Most recently, he's been building Generative AI systems: multi-agent architectures with QLoRA fine-tuning, RAG pipelines, LLM-as-Judge evaluation, and adversarial robustness testing.
+                    </p>
+                    <p class="about-current" data-anim="fade-up">
+                        CURRENTLY WORKING WITH SATSURE ANALYTICS AS A DATA SCIENTIST
+                    </p>
+                    <div class="about-highlights" data-anim="fade-up">
+                        <div class="highlight">
+                            <i class="fas fa-trophy"></i>
+                            <div><strong>Customer Champion</strong><br>SatSure Analytics</div>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-medal"></i>
+                            <div><strong>Gold Medalist</strong><br>M.Sc. Statistics — Rank #1</div>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div><strong>AIR-6</strong><br>B.Sc. Agriculture</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- ==================== EXPERIENCE ==================== -->
     <section id="experience" class="experience">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">My Journey</span>
-                <h2 class="section-title">Work Experience</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <span>July 2023 - Present</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Data Scientist</h3>
-                        <h4>SatSure Analytics <span class="location">• Bengaluru, India</span></h4>
-                        <ul class="timeline-list">
+            <h2 class="section-big-title section-big-title--light" data-anim="fade-up">/EXPERIENCE</h2>
+            <div class="exp-grid">
+                <div class="exp-card" data-anim="fade-up">
+                    <div class="exp-date">JULY 2023 — PRESENT</div>
+                    <div class="exp-content">
+                        <h3 class="exp-role">Data Scientist</h3>
+                        <h4 class="exp-company">SatSure Analytics <span>• Bengaluru, India</span></h4>
+                        <ul class="exp-list">
                             <li>Built and deployed a <strong>geospatial credit scoring model (~90% accuracy)</strong> that enabled banks to assess loan risk across 50K+ rural borrowers using satellite-derived features and ensemble ML</li>
                             <li>Engineered an insurance recovery prediction pipeline that drove <strong>~20% uplift in on-time loan collections</strong>, directly improving portfolio performance for 3 banking clients</li>
                             <li>Owned the full ML lifecycle across <strong>5 shipped products</strong> — feature engineering, hyperparameter tuning, <strong>MLflow experiment tracking</strong>, FastAPI serving, Docker containerization, and CI/CD on AWS (S3, Athena, EC2, ECR, EKS)</li>
@@ -195,16 +154,12 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <span>Jan 2023 - Mar 2023</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>ML Research Intern</h3>
-                        <h4>Western Sydney University <span class="location">• Sydney, Australia</span></h4>
-                        <ul class="timeline-list">
+                <div class="exp-card" data-anim="fade-up">
+                    <div class="exp-date">JAN 2023 — MAR 2023</div>
+                    <div class="exp-content">
+                        <h3 class="exp-role">ML Research Intern</h3>
+                        <h4 class="exp-company">Western Sydney University <span>• Sydney, Australia</span></h4>
+                        <ul class="exp-list">
                             <li>Researched and implemented time-series forecasting models (<strong>LSTM, ARIMA</strong>) for agricultural crop and price prediction</li>
                             <li>Designed preprocessing and validation workflows, improving forecasting accuracy by <strong>~12%</strong> while reducing manual analytical effort</li>
                             <li>Published research papers on deep learning architectures for agricultural commodity price forecasting</li>
@@ -215,645 +170,208 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ==================== PROJECTS / WORK ==================== -->
     <section id="projects" class="projects">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Featured Work</span>
-                <h2 class="section-title">Data Science Projects</h2>
+            <h2 class="section-big-title" data-anim="fade-up">/WORK</h2>
+            <div class="projects-list">
+
+                <!-- NovaPay -->
+                <a href="https://huggingface.co/spaces/Harshith69/novapay-support-agent" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
+                    <span class="project-name">NovaPay — Multi-Agent AI Support</span>
+                    <span class="project-cat">GenAI / RAG / QLoRA</span>
+                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Customer Segmentation -->
+                <a href="https://customer-segmentation-mlops-pipeline.streamlit.app/" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
+                    <span class="project-name">Customer Segmentation MLOps</span>
+                    <span class="project-cat">MLOps / KMeans / Streamlit</span>
+                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Fraud Detection -->
+                <div class="project-row project-row--disabled" data-anim="fade-up">
+                    <span class="project-name">Fraud Detection Pipeline</span>
+                    <span class="project-cat">XGBoost / LightGBM / DVC</span>
+                    <span class="project-arrow"><i class="fas fa-lock"></i></span>
+                </div>
+
+                <!-- Bank Branch -->
+                <a href="https://drive.google.com/file/d/1UOGeYkZ3Nz_brYXS1qo3EwQsxJHUpSrR/view?usp=drive_link" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
+                    <span class="project-name">Bank Branch Expansion</span>
+                    <span class="project-cat">Geospatial / ML</span>
+                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Crop Health -->
+                <a href="https://docs.google.com/videos/d/1yw7nqyyt-rvHSSWXixLQHh-KsTT5Cf-8bdaTJ9q3XvM/edit?usp=drive_link" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
+                    <span class="project-name">Real-Time Crop Health Monitoring</span>
+                    <span class="project-cat">NDVI / Time Series</span>
+                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+
+                <!-- F1 SQL -->
+                <a href="https://text-to-sql-chatbots.streamlit.app/" target="_blank" rel="noopener" class="project-row" data-anim="fade-up">
+                    <span class="project-name">F1 AI SQL Assistant</span>
+                    <span class="project-cat">LLM / Text-to-SQL</span>
+                    <span class="project-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+
             </div>
-            <div class="projects-grid">
 
-                <!-- Project 0 - NovaPay Multi-Agent Support -->
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <h3>NovaPay · Multi-Agent AI</h3>
-                            <p>QLoRA · RAG · ChromaDB · Groq · Gradio</p>
-                            <a href="https://huggingface.co/spaces/Harshith69/novapay-support-agent"
-                               target="_blank" rel="noopener" class="overlay-link">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
+            <!-- Expanded project detail cards -->
+            <div class="project-details-grid">
+                <div class="project-detail" data-anim="fade-up">
+                    <div class="pd-header">
+                        <span class="pd-num">01</span>
+                        <h3>NovaPay — Multi-Agent AI</h3>
                     </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">GenAI</span>
-                            <span class="tag">Multi-Agent</span>
-                            <span class="tag">QLoRA</span>
-                            <span class="tag">RAG</span>
-                            <span class="tag">ChromaDB</span>
-                            <span class="tag">LLM-as-Judge</span>
-                            <span class="tag">Gradio</span>
-                        </div>
-                        <h3>NovaPay — Multi-Agent AI Customer Support System</h3>
-                        <p>A production-grade multi-agent AI system for fintech customer support. Fine-tuned Gemma-3 4B via QLoRA (0.76% trainable params) routes queries to RAG-grounded specialist agents powered by Llama 3.3 70B. Includes hallucination detection, adversarial robustness testing, an escalation matrix, and a real-time ops dashboard — all on a zero-cost open-source stack.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <strong>4.9/5.0</strong>
-                                <span>Judge Score</span>
-                            </div>
-                            <div class="metric">
-                                <strong>15/15</strong>
-                                <span>Adversarial Safe</span>
-                            </div>
-                            <div class="metric">
-                                <strong>0.74</strong>
-                                <span>BERTScore F1</span>
-                            </div>
-                        </div>
-                        <ul class="project-highlights">
-                            <li>QLoRA fine-tuned triage classifier (Gemma-3 4B, rank-16 LoRA, 884 synthetic examples) with Groq LLM fallback</li>
-                            <li>RAG pipeline with ChromaDB + MiniLM-L6-v2 embeddings grounding every response in policy documents</li>
-                            <li>A/B/C evaluation with LLM-as-Judge, BERTScore, adversarial red-teaming (jailbreak, prompt injection, social engineering)</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://huggingface.co/spaces/Harshith69/novapay-support-agent"
-                               target="_blank" rel="noopener" class="project-link-btn project-link-btn--live">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/Harshith69/novapay-support-agent"
-                               target="_blank" rel="noopener" class="project-link-btn">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
+                    <p>Production-grade multi-agent AI system for fintech support. Fine-tuned Gemma-3 4B via QLoRA routes queries to RAG-grounded specialist agents powered by Llama 3.3 70B. Includes hallucination detection, adversarial robustness testing, and a real-time ops dashboard.</p>
+                    <div class="pd-metrics">
+                        <div><strong>4.9/5.0</strong> Judge Score</div>
+                        <div><strong>15/15</strong> Adversarial Safe</div>
+                        <div><strong>0.74</strong> BERTScore F1</div>
+                    </div>
+                    <div class="pd-tags">
+                        <span>GenAI</span><span>Multi-Agent</span><span>QLoRA</span><span>RAG</span><span>ChromaDB</span><span>LLM-as-Judge</span><span>Gradio</span>
+                    </div>
+                    <div class="pd-links">
+                        <a href="https://huggingface.co/spaces/Harshith69/novapay-support-agent" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/Harshith69/novapay-support-agent" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
 
-                <!-- Project 1 - Customer Segmentation MLOps Pipeline -->
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-users-gear"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <h3>Customer Segmentation · MLOps</h3>
-                            <p>KMeans · MLflow · FastAPI · Streamlit</p>
-                            <a href="https://customer-segmentation-mlops-pipeline.streamlit.app/"
-                               target="_blank" rel="noopener" class="overlay-link">
-                                <i class="fas fa-external-link-alt"></i> Live App
-                            </a>
-                        </div>
+                <div class="project-detail" data-anim="fade-up">
+                    <div class="pd-header">
+                        <span class="pd-num">02</span>
+                        <h3>Customer Segmentation MLOps</h3>
                     </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">MLOps</span>
-                            <span class="tag">KMeans</span>
-                            <span class="tag">MLflow</span>
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">Streamlit</span>
-                        </div>
-                        <h3>Customer Segmentation MLOps Pipeline</h3>
-                        <p>An end-to-end MLOps pipeline for customer segmentation using KMeans clustering on RFM and behavioral features (Recency, Frequency, Monetary, Quantity, Discount, Delivery Days, Customer Rating). Tracks experiments with MLflow + DagsHub for full reproducibility, serves predictions via FastAPI, and provides an interactive Streamlit UI — all containerized with Docker and deployed via GitHub Actions CI/CD.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <strong>3</strong>
-                                <span>Clustering Metrics</span>
-                            </div>
-                            <div class="metric">
-                                <strong>E2E</strong>
-                                <span>MLOps Lifecycle</span>
-                            </div>
-                        </div>
-                        <ul class="project-highlights">
-                            <li>Modular ingestion, validation, transformation, and training pipeline with MongoDB as data source and pytest coverage</li>
-                            <li>Experiment tracking with MLflow + DagsHub — parameters, metrics, and artifacts all versioned and reproducible</li>
-                            <li>Live Streamlit app deployed on Streamlit Cloud; Docker image auto-pushed to Docker Hub via GitHub Actions</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://customer-segmentation-mlops-pipeline.streamlit.app/"
-                               target="_blank" rel="noopener" class="project-link-btn project-link-btn--live">
-                                <i class="fas fa-external-link-alt"></i> Live App
-                            </a>
-                        </div>
+                    <p>End-to-end MLOps pipeline using KMeans clustering on RFM features. MLflow + DagsHub for reproducibility, FastAPI serving, Docker containerization, and GitHub Actions CI/CD.</p>
+                    <div class="pd-tags">
+                        <span>MLOps</span><span>KMeans</span><span>MLflow</span><span>FastAPI</span><span>Docker</span><span>Streamlit</span>
+                    </div>
+                    <div class="pd-links">
+                        <a href="https://customer-segmentation-mlops-pipeline.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live App</a>
                     </div>
                 </div>
 
-                <!-- Project 2 - Fraud Detection MLOps Pipeline -->
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-shield-halved"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <h3>Fraud Detection · MLOps</h3>
-                            <p>XGBoost · LightGBM · MLflow · DVC · FastAPI</p>
-                        </div>
+                <div class="project-detail" data-anim="fade-up">
+                    <div class="pd-header">
+                        <span class="pd-num">03</span>
+                        <h3>Fraud Detection Pipeline</h3>
                     </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">MLOps</span>
-                            <span class="tag">XGBoost</span>
-                            <span class="tag">LightGBM</span>
-                            <span class="tag">MLflow</span>
-                            <span class="tag">DVC</span>
-                            <span class="tag">FastAPI</span>
-                        </div>
-                        <h3>Fraud Detection MLOps Pipeline</h3>
-                        <p>A production-grade fraud detection pipeline benchmarking XGBoost and LightGBM on imbalanced transaction data, with full experiment tracking via MLflow, data and model versioning with DVC, hyperparameter tuning with Optuna, and a FastAPI inference service — engineered with reproducibility and auditability in mind.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <strong>2</strong>
-                                <span>Benchmarked Models</span>
-                            </div>
-                            <div class="metric">
-                                <strong>E2E</strong>
-                                <span>MLOps Lifecycle</span>
-                            </div>
-                        </div>
-                        <ul class="project-highlights">
-                            <li>Class-imbalance handling, feature engineering, and stratified evaluation with precision/recall focus on the minority fraud class</li>
-                            <li>Reproducible pipeline with DVC for data/model versioning and MLflow for experiment + artifact tracking on DagsHub</li>
-                            <li>FastAPI inference service containerized with Docker and orchestrated through a GitHub Actions CI/CD workflow</li>
-                        </ul>
-                        <div class="project-links">
-                            <span class="project-link-btn project-link-btn--disabled" aria-disabled="true" tabindex="-1">
-                                <i class="fas fa-external-link-alt"></i> Live App Unavailable
-                            </span>
-                        </div>
+                    <p>Production-grade fraud detection benchmarking XGBoost and LightGBM on imbalanced data, with MLflow tracking, DVC versioning, Optuna tuning, and FastAPI inference.</p>
+                    <div class="pd-tags">
+                        <span>MLOps</span><span>XGBoost</span><span>LightGBM</span><span>MLflow</span><span>DVC</span><span>FastAPI</span>
                     </div>
                 </div>
-
-                <!-- Project 3 - Bank Branch -->
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <h3>Bank Branch Expansion</h3>
-                            <p>Location Intelligence & Geospatial Analytics</p>
-                            <a href="https://drive.google.com/file/d/1UOGeYkZ3Nz_brYXS1qo3EwQsxJHUpSrR/view?usp=drive_link" 
-                               target="_blank" rel="noopener" class="overlay-link">
-                                <i class="fas fa-play-circle"></i> Watch Demo
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">K-Means</span>
-                            <span class="tag">Geospatial</span>
-                        </div>
-                        <h3>Bank Branch Expansion using Location Intelligence</h3>
-                        <p>Identified high-potential, profitable locations for new bank branches through advanced geospatial analytics and ML modeling.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <strong>82%</strong>
-                                <span>Accuracy</span>
-                            </div>
-                            <div class="metric">
-                                <strong>35%</strong>
-                                <span>Cost Reduction</span>
-                            </div>
-                        </div>
-                        <ul class="project-highlights">
-                            <li>Deep EDA and feature engineering on large-scale demographic datasets</li>
-                            <li>K-Means clustering for market segmentation</li>
-                            <li>Random Forest & Linear Regression for profitability prediction</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://drive.google.com/file/d/1UOGeYkZ3Nz_brYXS1qo3EwQsxJHUpSrR/view?usp=drive_link" 
-                               target="_blank" rel="noopener" class="project-link-btn">
-                                <i class="fas fa-play-circle"></i> Watch Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 - Crop Health -->
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-satellite"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <h3>Crop Health Monitoring</h3>
-                            <p>Remote Sensing & Time Series Analysis</p>
-                            <a href="https://docs.google.com/videos/d/1yw7nqyyt-rvHSSWXixLQHh-KsTT5Cf-8bdaTJ9q3XvM/edit?usp=drive_link" 
-                               target="_blank" rel="noopener" class="overlay-link">
-                                <i class="fas fa-play-circle"></i> Watch Demo
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Time Series</span>
-                            <span class="tag">NDVI</span>
-                            <span class="tag">K-Means</span>
-                        </div>
-                        <h3>Real-Time Crop Health Monitoring</h3>
-                        <p>Built a high-resolution crop health intelligence system using time series NDVI for risk assessment and insurance validation.</p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <strong>95%</strong>
-                                <span>Accuracy</span>
-                            </div>
-                            <div class="metric">
-                                <strong>10m</strong>
-                                <span>Resolution</span>
-                            </div>
-                        </div>
-                        <ul class="project-highlights">
-                            <li>Statistical time-series analysis on multitemporal NDVI data</li>
-                            <li>K-Means clustering to classify crop health (Good/Average/Poor)</li>
-                            <li>Adopted by banks and insurers for loan underwriting and yield assurance</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://docs.google.com/videos/d/1yw7nqyyt-rvHSSWXixLQHh-KsTT5Cf-8bdaTJ9q3XvM/edit?usp=drive_link" 
-                               target="_blank" rel="noopener" class="project-link-btn">
-                                <i class="fas fa-play-circle"></i> Watch Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 - Text to SQL -->
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-image">
-                        <div class="project-placeholder project-placeholder--f1">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <h3>F1 AI SQL Assistant</h3>
-                            <p>Natural Language to SQL · LLM · Streamlit</p>
-                            <a href="https://text-to-sql-chatbots.streamlit.app/" 
-                               target="_blank" rel="noopener" class="overlay-link">
-                                <i class="fas fa-external-link-alt"></i> Live App
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">LLM</span>
-                            <span class="tag">Text-to-SQL</span>
-                            <span class="tag">Groq · LLaMA 3.3</span>
-                            <span class="tag">Streamlit</span>
-                        </div>
-                        <h3>F1 AI SQL Assistant — Text to SQL</h3>
-                        <p>A production-grade natural language interface that lets anyone query Formula 1 race data in plain English — no SQL required.</p>
-                        <ul class="project-highlights">
-                            <li>Applied prompt engineering with Groq's LLaMA 3.3 70B to auto-generate, execute, and self-correct SQL queries — demonstrating end-to-end LLM integration with real database backends</li>
-                            <li>Implemented full conversation memory, smart clarification logic, and SQL safety guardrails (SELECT-only enforcement), ensuring production-ready reliability</li>
-                            <li>Delivered a zero-barrier analytics experience — translating complex F1 race data into precise human-readable answers, proving how LLMs can democratize data access</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://text-to-sql-chatbots.streamlit.app/" 
-                               target="_blank" rel="noopener" class="project-link-btn project-link-btn--live">
-                                <i class="fas fa-external-link-alt"></i> Live App
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ==================== SKILLS ==================== -->
     <section id="skills" class="skills">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Technical Expertise</span>
-                <h2 class="section-title">Skills & Technologies</h2>
-            </div>
-            <div class="skills-content">
-                <!-- Technical Skills with Progress Bars -->
-                <div class="skills-bars">
-                    <h3 class="skills-subtitle">Core Competencies</h3>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">Python & SQL</span>
-                            <span class="skill-percentage">95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">Machine Learning (Scikit-learn, XGBoost, LightGBM)</span>
-                            <span class="skill-percentage">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">MLOps (MLflow, DVC, DagsHub, Docker, CI/CD)</span>
-                            <span class="skill-percentage">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="88"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">Geospatial Analytics & NDVI</span>
-                            <span class="skill-percentage">92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="92"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">AWS (S3, Athena, EC2, ECR, EKS)</span>
-                            <span class="skill-percentage">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">LLMs, RAG & LangChain (Agentic AI)</span>
-                            <span class="skill-percentage">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">Apache Airflow & Apache Iceberg</span>
-                            <span class="skill-percentage">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item" data-aos="fade-right">
-                        <div class="skill-info">
-                            <span class="skill-name">Data Visualization (Tableau, Matplotlib, Seaborn)</span>
-                            <span class="skill-percentage">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="88"></div>
-                        </div>
+            <h2 class="section-big-title section-big-title--light" data-anim="fade-up">/SKILLS</h2>
+            <div class="skills-grid">
+                <div class="skill-group" data-anim="fade-up">
+                    <h3>Languages & Core</h3>
+                    <div class="skill-pills">
+                        <span>Python</span><span>SQL</span><span>Pandas</span><span>NumPy</span>
                     </div>
                 </div>
-
-                <!-- Tools & Technologies Grid -->
-                <div class="skills-grid">
-                    <h3 class="skills-subtitle">Tools & Technologies</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-database"></i>
-                            <span>SQL</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fab fa-aws"></i>
-                            <span>AWS</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Scikit-learn</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-tree"></i>
-                            <span>XGBoost</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-bolt"></i>
-                            <span>LightGBM</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-table"></i>
-                            <span>Pandas</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-square-root-variable"></i>
-                            <span>NumPy</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-flask"></i>
-                            <span>MLflow</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-code-branch"></i>
-                            <span>DVC</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-diagram-project"></i>
-                            <span>DagsHub</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fab fa-docker"></i>
-                            <span>Docker</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-bolt-lightning"></i>
-                            <span>FastAPI</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-chart-column"></i>
-                            <span>Streamlit</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-link"></i>
-                            <span>LangChain</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-microchip"></i>
-                            <span>Groq</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-sliders"></i>
-                            <span>Optuna</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-wind"></i>
-                            <span>Apache Airflow</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-cube"></i>
-                            <span>Apache Iceberg</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-leaf"></i>
-                            <span>MongoDB</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Tableau</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fab fa-github"></i>
-                            <span>Git/GitHub</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-gears"></i>
-                            <span>GitHub Actions</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-brain"></i>
-                            <span>LSTM/ARIMA</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-chart-area"></i>
-                            <span>Seaborn</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-cogs"></i>
-                            <span>N8n</span>
-                        </div>
-                        <div class="tech-item" data-aos="zoom-in">
-                            <i class="fas fa-message"></i>
-                            <span>Prompt Engineering</span>
-                        </div>
+                <div class="skill-group" data-anim="fade-up">
+                    <h3>Machine Learning</h3>
+                    <div class="skill-pills">
+                        <span>Scikit-learn</span><span>XGBoost</span><span>LightGBM</span><span>LSTM</span><span>ARIMA</span><span>Optuna</span>
+                    </div>
+                </div>
+                <div class="skill-group" data-anim="fade-up">
+                    <h3>MLOps & Deployment</h3>
+                    <div class="skill-pills">
+                        <span>MLflow</span><span>DVC</span><span>DagsHub</span><span>Docker</span><span>FastAPI</span><span>Streamlit</span><span>GitHub Actions</span>
+                    </div>
+                </div>
+                <div class="skill-group" data-anim="fade-up">
+                    <h3>GenAI & LLMs</h3>
+                    <div class="skill-pills">
+                        <span>LangChain</span><span>RAG</span><span>ChromaDB</span><span>Groq</span><span>QLoRA</span><span>Prompt Engineering</span><span>Gradio</span>
+                    </div>
+                </div>
+                <div class="skill-group" data-anim="fade-up">
+                    <h3>Cloud & Data</h3>
+                    <div class="skill-pills">
+                        <span>AWS (S3, Athena, EC2, ECR, EKS)</span><span>Apache Airflow</span><span>Apache Iceberg</span><span>MongoDB</span>
+                    </div>
+                </div>
+                <div class="skill-group" data-anim="fade-up">
+                    <h3>Visualization & Tools</h3>
+                    <div class="skill-pills">
+                        <span>Tableau</span><span>Matplotlib</span><span>Seaborn</span><span>Git/GitHub</span><span>N8n</span>
                     </div>
                 </div>
             </div>
 
             <!-- Certifications -->
-            <div class="certifications">
-                <h3 class="skills-subtitle">Certifications & Publications</h3>
-                <div class="cert-grid">
-                    <div class="cert-item" data-aos="fade-up">
-                        <i class="fas fa-certificate"></i>
-                        <div class="cert-content">
-                            <h4>Generative AI with LangChain & HuggingFace</h4>
-                        </div>
-                    </div>
-                    <div class="cert-item" data-aos="fade-up">
-                        <i class="fas fa-certificate"></i>
-                        <div class="cert-content">
-                            <h4>Advanced Python for Data Science</h4>
-                        </div>
-                    </div>
-                    <div class="cert-item" data-aos="fade-up">
-                        <i class="fab fa-hackerrank"></i>
-                        <div class="cert-content">
-                            <h4>HackerRank SQL Certification</h4>
-                        </div>
-                    </div>
-                    <div class="cert-item" data-aos="fade-up">
-                        <i class="fas fa-certificate"></i>
-                        <div class="cert-content">
-                            <h4>Google Project Management</h4>
-                        </div>
-                    </div>
-                    <div class="cert-item" data-aos="fade-up">
-                        <i class="fas fa-file-alt"></i>
-                        <div class="cert-content">
-                            <h4>Memory-based neural network for cumin price forecasting (Gujarat)</h4>
-                        </div>
-                    </div>
-                    <div class="cert-item" data-aos="fade-up">
-                        <i class="fas fa-file-alt"></i>
-                        <div class="cert-content">
-                            <h4>RNN architecture for banana price forecasting (Gujarat)</h4>
-                        </div>
-                    </div>
+            <div class="certs" data-anim="fade-up">
+                <h3>Certifications & Publications</h3>
+                <div class="cert-list">
+                    <div class="cert-item"><i class="fas fa-certificate"></i> Generative AI with LangChain & HuggingFace</div>
+                    <div class="cert-item"><i class="fas fa-certificate"></i> Advanced Python for Data Science</div>
+                    <div class="cert-item"><i class="fab fa-hackerrank"></i> HackerRank SQL Certification</div>
+                    <div class="cert-item"><i class="fas fa-certificate"></i> Google Project Management</div>
+                    <div class="cert-item"><i class="fas fa-file-alt"></i> Memory-based neural network for cumin price forecasting</div>
+                    <div class="cert-item"><i class="fas fa-file-alt"></i> RNN architecture for banana price forecasting</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- ==================== EDUCATION ==================== -->
     <section id="education" class="education">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Academic Background</span>
-                <h2 class="section-title">Education</h2>
-            </div>
-            <div class="education-grid">
-                <div class="education-card" data-aos="fade-up">
-                    <div class="edu-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="edu-content">
-                        <h3>M.Sc. Agricultural Statistics</h3>
-                        <h4>Anand Agricultural University</h4>
-                        <p class="edu-year">2021 - 2023 • Anand, Gujarat</p>
-                        <div class="edu-achievement">
-                            <i class="fas fa-trophy"></i>
-                            <span>Gold Medalist</span>
-                        </div>
-                    </div>
+            <h2 class="section-big-title" data-anim="fade-up">/EDUCATION</h2>
+            <div class="edu-grid">
+                <div class="edu-card" data-anim="fade-up">
+                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>M.Sc. Agricultural Statistics</h3>
+                    <h4>Anand Agricultural University</h4>
+                    <p class="edu-year">2021 — 2023 • Anand, Gujarat</p>
+                    <div class="edu-badge"><i class="fas fa-trophy"></i> Gold Medalist — University Rank #1</div>
                 </div>
-                <div class="education-card" data-aos="fade-up">
-                    <div class="edu-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="edu-content">
-                        <h3>B.Sc. Agriculture</h3>
-                        <h4>University of Agricultural Sciences</h4>
-                        <p class="edu-year">2017 - 2021 • Bangalore</p>
-                        <div class="edu-achievement">
-                            <i class="fas fa-medal"></i>
-                            <span>All India Rank - 6</span>
-                        </div>
-                    </div>
+                <div class="edu-card" data-anim="fade-up">
+                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>B.Sc. Agriculture</h3>
+                    <h4>University of Agricultural Sciences</h4>
+                    <p class="edu-year">2017 — 2021 • Bangalore</p>
+                    <div class="edu-badge"><i class="fas fa-medal"></i> All India Rank — 6</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ==================== CONTACT ==================== -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Let's Connect</h2>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p class="contact-intro">
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!
+            <div class="contact-grid">
+                <div class="contact-left">
+                    <h2 class="section-big-title section-big-title--light" data-anim="fade-up">/CONTACT</h2>
+                    <p class="contact-intro" data-anim="fade-up">
+                        Have a project in mind or want to discuss opportunities? Let's connect and build something impactful.
                     </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <a href="mailto:harshithnchandan@gmail.com">harshithnchandan@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Phone</h4>
-                                <a href="tel:+919663918804">+91 9663918804</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Location</h4>
-                                <p>Bangalore, India</p>
-                            </div>
-                        </div>
+                    <div class="contact-details" data-anim="fade-up">
+                        <a href="mailto:harshithnchandan@gmail.com"><i class="fas fa-envelope"></i> harshithnchandan@gmail.com</a>
+                        <a href="tel:+919663918804"><i class="fas fa-phone"></i> +91 9663918804</a>
+                        <p><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
                     </div>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/harshithnarasimhamurthy69/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/Harshith69" target="_blank" rel="noopener" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="mailto:harshithnchandan@gmail.com" aria-label="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
+                    <div class="contact-socials" data-anim="fade-up">
+                        <a href="https://www.linkedin.com/in/harshithnarasimhamurthy69/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Harshith69" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        <a href="mailto:harshithnchandan@gmail.com"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
-                <div class="contact-form-container">
+                <div class="contact-right">
                     <form class="contact-form" id="contactForm"
                           action="https://formsubmit.co/harshithnchandan@gmail.com"
                           method="POST">
@@ -861,25 +379,24 @@
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_next" value="https://harshith69.github.io/Resume_Webpage/#contact">
                         <input type="text" name="_honey" style="display:none">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        <div class="form-group" data-anim="fade-up">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
                         </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        <div class="form-group" data-anim="fade-up">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" data-anim="fade-up">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Project Discussion">
+                            <input type="text" id="subject" name="subject" required placeholder="Project discussion">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" data-anim="fade-up">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Your message here..."></textarea>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">
-                            Send Message
-                            <i class="fas fa-paper-plane"></i>
+                        <button type="submit" class="btn-submit" data-anim="fade-up">
+                            Send Message <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
                 </div>
@@ -889,22 +406,19 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Harshith Narasimhamurthy. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
+        <div class="container footer-inner">
+            <p>&copy; 2025 Harshith Narasimhamurthy</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Work</a>
+                <a href="#contact">Contact</a>
             </div>
-            <button class="back-to-top" id="backToTop" aria-label="Back to top">
-                <i class="fas fa-arrow-up"></i>
-            </button>
         </div>
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </footer>
-
 
     <script src="./script.js"></script>
 </body>
