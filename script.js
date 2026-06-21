@@ -67,7 +67,7 @@ navLinks.forEach(link => {
 // ===================================
 const typingText = document.getElementById('typingText');
 const titles = [
-    'Data Scientist', 'Decision Scientist', 'Business Analyst'
+    'Data Scientist', 'Decision Scientist', 'ML Engineer'
 ];
 
 let titleIndex = 0;
