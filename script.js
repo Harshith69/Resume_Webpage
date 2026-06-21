@@ -241,29 +241,30 @@ const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Here you would typically send the form data to a server
-    // For now, we'll just show an alert
-    console.log('Form Data:', formData);
-    
-    // Show success message
-    alert('Thank you for your message! I will get back to you soon.');
-    
-    // Reset form
-    contactForm.reset();
-    
-    // Note: To actually send emails, you would need to integrate with:
-    // - EmailJS (https://www.emailjs.com/)
-    // - Formspree (https://formspree.io/)
-    // - Or your own backend server
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const origHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    fetch('https://formsubmit.co/ajax/harshithnchandan@gmail.com', {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+    }).then(res => {
+        if (res.ok) {
+            contactForm.reset();
+            btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+            btn.style.background = 'var(--color-accent)';
+            btn.style.color = '#0a0f1c';
+            setTimeout(() => { btn.innerHTML = origHTML; btn.disabled = false; btn.style.background = ''; btn.style.color = ''; }, 3000);
+        } else {
+            throw new Error('Form submission failed');
+        }
+    }).catch(() => {
+        btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed — try again';
+        btn.disabled = false;
+        setTimeout(() => { btn.innerHTML = origHTML; }, 3000);
+    });
 });
 
 // ===================================

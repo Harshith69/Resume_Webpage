@@ -955,44 +955,6 @@ section {
     box-shadow: 0 6px 20px rgba(0, 230, 118, 0.35);
 }
 
-/* Featured project card — highlighted with accent glow */
-.project-card--featured {
-    border: 1.5px solid var(--color-accent) !important;
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.12), 0 8px 32px rgba(0, 0, 0, 0.4);
-    position: relative;
-    grid-column: 1 / -1;
-}
-
-.project-card--featured .project-image {
-    background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 100%);
-}
-
-.project-placeholder--novapay {
-    background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(99, 102, 241, 0.08)) !important;
-    color: var(--color-accent) !important;
-}
-
-.project-featured-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--color-accent);
-    background: rgba(0, 217, 255, 0.08);
-    border: 1px solid rgba(0, 217, 255, 0.2);
-    padding: 6px 14px;
-    border-radius: 4px;
-    margin-bottom: 12px;
-}
-
-.project-featured-badge i {
-    font-size: 0.65rem;
-    color: #fbbf24;
-}
 
 /* Disabled / unavailable variant — used when no public live demo exists */
 .project-link-btn--disabled {
