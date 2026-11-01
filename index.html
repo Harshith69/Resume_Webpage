@@ -23,6 +23,7 @@
     <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#x1f3af;</text></svg>">
 </head>
 <body>
+    <div class="intro-curtain" id="introCurtain" aria-hidden="true"><div class="intro-mark">H<span>.</span></div><div class="intro-caption">INDEPENDENT THINKING. INTELLIGENT SYSTEMS.</div><div class="intro-line"><span></span></div></div>
 
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -55,6 +56,8 @@
             </button>
         </div>
     </nav>
+
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Enable sound effects"><span class="sound-icon">♪</span><span class="sound-label">SOUND OFF</span><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
 
     <!-- ==================== HERO ==================== -->
     <section id="home" class="hero">
@@ -459,5 +462,6 @@
     </footer>
 
     <script src="./script.js"></script>
+    <div class="ambient-grain" aria-hidden="true"></div>
 </body>
 </html>
