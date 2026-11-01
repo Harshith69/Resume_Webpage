@@ -63,6 +63,34 @@ const animObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 animEls.forEach(el => animObs.observe(el));
 
+// =========================================================
+// Section scene changes: one-time torn-edge reveal on entry
+// =========================================================
+(() => {
+  const sceneSections = document.querySelectorAll('section:not(.hero)');
+  if (!('IntersectionObserver' in window) || !sceneSections.length) {
+    sceneSections.forEach(section => section.classList.add('scene-section', 'scene-entered'));
+    return;
+  }
+
+  const sceneObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('scene-entered');
+      sceneObserver.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '-6% 0px -18% 0px'
+  });
+
+  sceneSections.forEach(section => {
+    section.classList.add('scene-section');
+    sceneObserver.observe(section);
+  });
+})();
+
+
 // ===================================
 // Stat Counter Animation
 // ===================================
