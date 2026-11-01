@@ -220,13 +220,14 @@ window.addEventListener('load', () => {
 
 
 // =========================================================
-// Cinematic intro + optional procedural UI sound design
+// Cinematic intro + continuous ambient soundscape + UI sounds
 // =========================================================
 (() => {
   const curtain = document.getElementById('introCurtain');
   const soundButton = document.getElementById('soundToggle');
   const soundLabel = soundButton?.querySelector('.sound-label');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   if (curtain) {
     if (reducedMotion || sessionStorage.getItem('portfolioIntroSeen')) {
       curtain.classList.add('is-gone');
@@ -243,18 +244,80 @@ window.addEventListener('load', () => {
   let audioContext = null;
   let soundEnabled = false;
   let masterGain = null;
+  let ambientNodes = [];
+
   function getAudio() {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return null;
     if (!audioContext) {
       audioContext = new AudioCtx();
       masterGain = audioContext.createGain();
-      masterGain.gain.value = 0.16;
+      masterGain.gain.value = 0.72;
       masterGain.connect(audioContext.destination);
     }
     if (audioContext.state === 'suspended') audioContext.resume();
     return audioContext;
   }
+
+  // Original, softly layered ambient tones; no external audio files or copyrighted music.
+  function startAmbient() {
+    const ctx = getAudio();
+    if (!ctx || ambientNodes.length) return;
+
+    const pad = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 620;
+    filter.Q.value = 0.65;
+    pad.gain.setValueAtTime(0.0001, ctx.currentTime);
+    pad.gain.exponentialRampToValueAtTime(0.026, ctx.currentTime + 3.5);
+    filter.connect(pad);
+    pad.connect(masterGain);
+
+    // A warm, slowly shifting A-minor-inspired pad.
+    [110, 164.81, 220, 329.63].forEach((frequency, index) => {
+      const osc = ctx.createOscillator();
+      const voiceGain = ctx.createGain();
+      osc.type = index === 3 ? 'sine' : 'triangle';
+      osc.frequency.value = frequency;
+      osc.detune.value = index % 2 === 0 ? -4 : 4;
+      voiceGain.gain.value = index === 0 ? 0.34 : index === 3 ? 0.12 : 0.2;
+      osc.connect(voiceGain);
+      voiceGain.connect(filter);
+      osc.start();
+      ambientNodes.push(osc, voiceGain);
+    });
+
+    // Very slow filter movement gives the background a subtle living texture.
+    const lfo = ctx.createOscillator();
+    const lfoDepth = ctx.createGain();
+    lfo.type = 'sine';
+    lfo.frequency.value = 0.075;
+    lfoDepth.gain.value = 150;
+    lfo.connect(lfoDepth);
+    lfoDepth.connect(filter.frequency);
+    lfo.start();
+    ambientNodes.push(lfo, lfoDepth, filter, pad);
+  }
+
+  function stopAmbient() {
+    if (!audioContext || !ambientNodes.length) return;
+    const pad = ambientNodes[ambientNodes.length - 1];
+    const ctx = audioContext;
+    if (pad?.gain) {
+      pad.gain.cancelScheduledValues(ctx.currentTime);
+      pad.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.35);
+    }
+    const nodes = ambientNodes.slice();
+    ambientNodes = [];
+    window.setTimeout(() => {
+      nodes.forEach(node => {
+        try { if (typeof node.stop === 'function') node.stop(); } catch (_) {}
+        try { node.disconnect(); } catch (_) {}
+      });
+    }, 1500);
+  }
+
   function tone(frequency, duration = .055, type = 'sine', volume = .16) {
     if (!soundEnabled) return;
     const ctx = getAudio();
@@ -271,19 +334,32 @@ window.addEventListener('load', () => {
     osc.start();
     osc.stop(ctx.currentTime + duration + .015);
   }
+
   soundButton?.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
     soundButton.setAttribute('aria-pressed', String(soundEnabled));
-    soundButton.setAttribute('aria-label', soundEnabled ? 'Disable sound effects' : 'Enable sound effects');
-    if (soundLabel) soundLabel.textContent = soundEnabled ? 'SOUND ON' : 'SOUND OFF';
+    soundButton.setAttribute('aria-label', soundEnabled ? 'Turn ambient sound off' : 'Turn ambient sound on');
+    if (soundLabel) soundLabel.textContent = soundEnabled ? 'AMBIENCE ON' : 'SOUND OFF';
+
     if (soundEnabled) {
       getAudio();
-      tone(523.25, .11, 'sine', .22);
-      window.setTimeout(() => tone(783.99, .14, 'sine', .15), 75);
+      startAmbient();
+      tone(523.25, .11, 'sine', .12);
+      window.setTimeout(() => tone(783.99, .14, 'sine', .09), 75);
+    } else {
+      stopAmbient();
     }
   });
+
   document.querySelectorAll('a,button,.project-card').forEach(el => {
     el.addEventListener('pointerenter', () => tone(880, .025, 'sine', .055), { passive: true });
     el.addEventListener('click', () => tone(440, .045, 'triangle', .12), { passive: true });
+  });
+
+  // Pause the ambient layer when the tab is hidden; resume when it is visible.
+  document.addEventListener('visibilitychange', () => {
+    if (!audioContext) return;
+    if (document.hidden && audioContext.state === 'running') audioContext.suspend();
+    else if (!document.hidden && soundEnabled && audioContext.state === 'suspended') audioContext.resume();
   });
 })();
