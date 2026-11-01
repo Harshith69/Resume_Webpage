@@ -95,24 +95,38 @@ animEls.forEach(el => animObs.observe(el));
 
   if (!('IntersectionObserver' in window)) return;
 
-  const sceneObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('scene-section', 'scene-entered');
-      playWipe(entry.target);
-      sceneObserver.unobserve(entry.target);
-    });
-  }, {
-    // A narrow trigger zone around the viewport's centre avoids firing
-    // while the section is still far below the visible reading area.
-    threshold: 0.01,
-    rootMargin: '-52% 0px -32% 0px'
-  });
+  const seenSections = new WeakSet();
 
-  sceneSections.forEach(section => {
-    section.classList.add('scene-section');
-    sceneObserver.observe(section);
-  });
+  function createSceneObserver() {
+    // IntersectionObserver percentages resolve against root width, not height.
+    // Use pixel offsets calculated from viewport height to keep a real trigger zone.
+    const topInset = Math.round(window.innerHeight * 0.52);
+    const bottomInset = Math.round(window.innerHeight * 0.32);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting || seenSections.has(entry.target)) return;
+        seenSections.add(entry.target);
+        entry.target.classList.add('scene-section', 'scene-entered');
+        playWipe(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.01,
+      rootMargin: `-${topInset}px 0px -${bottomInset}px 0px`
+    });
+
+    sceneSections.forEach(section => {
+      section.classList.add('scene-section');
+      if (!seenSections.has(section)) observer.observe(section);
+    });
+    return observer;
+  }
+
+  let sceneObserver = createSceneObserver();
+  window.addEventListener('resize', () => {
+    sceneObserver.disconnect();
+    sceneObserver = createSceneObserver();
+  }, { passive: true });
 })();
 
 // Stat Counter Animation
