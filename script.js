@@ -64,24 +64,49 @@ const animObs = new IntersectionObserver((entries) => {
 animEls.forEach(el => animObs.observe(el));
 
 // =========================================================
-// Section scene changes: one-time torn-edge reveal on entry
+// =========================================================
+// Section-to-section cinematic wipe
+// Trigger when an incoming section reaches the middle of the
+// viewport, so the motion is visible while the boundary moves.
 // =========================================================
 (() => {
-  const sceneSections = document.querySelectorAll('section:not(.hero)');
-  if (!('IntersectionObserver' in window) || !sceneSections.length) {
-    sceneSections.forEach(section => section.classList.add('scene-section', 'scene-entered'));
-    return;
+  const sceneSections = [...document.querySelectorAll('section:not(.hero)')];
+  if (!sceneSections.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const wipe = document.createElement('div');
+  wipe.className = 'scene-transition-wipe';
+  wipe.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(wipe);
+
+  function playWipe(section) {
+    const nextBackground = getComputedStyle(section).backgroundColor;
+    wipe.style.setProperty('--wipe-color', nextBackground || '#f0f3f1');
+    wipe.classList.remove('is-running');
+    // Restart the animation reliably when two sections enter in quick succession.
+    void wipe.offsetWidth;
+    wipe.classList.add('is-running');
   }
+
+  wipe.addEventListener('animationend', () => {
+    wipe.classList.remove('is-running');
+  });
+
+  if (!('IntersectionObserver' in window)) return;
 
   const sceneObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add('scene-entered');
+      entry.target.classList.add('scene-section', 'scene-entered');
+      playWipe(entry.target);
       sceneObserver.unobserve(entry.target);
     });
   }, {
-    threshold: 0.12,
-    rootMargin: '-6% 0px -18% 0px'
+    // A narrow trigger zone around the viewport's centre avoids firing
+    // while the section is still far below the visible reading area.
+    threshold: 0.01,
+    rootMargin: '-52% 0px -32% 0px'
   });
 
   sceneSections.forEach(section => {
@@ -90,8 +115,6 @@ animEls.forEach(el => animObs.observe(el));
   });
 })();
 
-
-// ===================================
 // Stat Counter Animation
 // ===================================
 const statNums = document.querySelectorAll('.stat-num');
