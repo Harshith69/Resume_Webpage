@@ -217,3 +217,73 @@ window.addEventListener('load', () => {
         document.body.style.opacity = '1';
     }, 50);
 });
+
+
+// =========================================================
+// Cinematic intro + optional procedural UI sound design
+// =========================================================
+(() => {
+  const curtain = document.getElementById('introCurtain');
+  const soundButton = document.getElementById('soundToggle');
+  const soundLabel = soundButton?.querySelector('.sound-label');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (curtain) {
+    if (reducedMotion || sessionStorage.getItem('portfolioIntroSeen')) {
+      curtain.classList.add('is-gone');
+    } else {
+      window.addEventListener('load', () => {
+        window.setTimeout(() => {
+          curtain.classList.add('is-gone');
+          sessionStorage.setItem('portfolioIntroSeen', '1');
+        }, 1450);
+      }, { once: true });
+    }
+  }
+
+  let audioContext = null;
+  let soundEnabled = false;
+  let masterGain = null;
+  function getAudio() {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+    if (!audioContext) {
+      audioContext = new AudioCtx();
+      masterGain = audioContext.createGain();
+      masterGain.gain.value = 0.16;
+      masterGain.connect(audioContext.destination);
+    }
+    if (audioContext.state === 'suspended') audioContext.resume();
+    return audioContext;
+  }
+  function tone(frequency, duration = .055, type = 'sine', volume = .16) {
+    if (!soundEnabled) return;
+    const ctx = getAudio();
+    if (!ctx || !masterGain) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(frequency, ctx.currentTime);
+    gain.gain.setValueAtTime(.0001, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(volume, ctx.currentTime + .008);
+    gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start();
+    osc.stop(ctx.currentTime + duration + .015);
+  }
+  soundButton?.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    soundButton.setAttribute('aria-pressed', String(soundEnabled));
+    soundButton.setAttribute('aria-label', soundEnabled ? 'Disable sound effects' : 'Enable sound effects');
+    if (soundLabel) soundLabel.textContent = soundEnabled ? 'SOUND ON' : 'SOUND OFF';
+    if (soundEnabled) {
+      getAudio();
+      tone(523.25, .11, 'sine', .22);
+      window.setTimeout(() => tone(783.99, .14, 'sine', .15), 75);
+    }
+  });
+  document.querySelectorAll('a,button,.project-card').forEach(el => {
+    el.addEventListener('pointerenter', () => tone(880, .025, 'sine', .055), { passive: true });
+    el.addEventListener('click', () => tone(440, .045, 'triangle', .12), { passive: true });
+  });
+})();
