@@ -267,10 +267,10 @@ window.addEventListener('load', () => {
     const pad = ctx.createGain();
     const filter = ctx.createBiquadFilter();
     filter.type = 'lowpass';
-    filter.frequency.value = 620;
+    filter.frequency.value = 900;
     filter.Q.value = 0.65;
     pad.gain.setValueAtTime(0.0001, ctx.currentTime);
-    pad.gain.exponentialRampToValueAtTime(0.026, ctx.currentTime + 3.5);
+    pad.gain.exponentialRampToValueAtTime(0.16, ctx.currentTime + 2.2);
     filter.connect(pad);
     pad.connect(masterGain);
 
@@ -281,7 +281,7 @@ window.addEventListener('load', () => {
       osc.type = index === 3 ? 'sine' : 'triangle';
       osc.frequency.value = frequency;
       osc.detune.value = index % 2 === 0 ? -4 : 4;
-      voiceGain.gain.value = index === 0 ? 0.34 : index === 3 ? 0.12 : 0.2;
+      voiceGain.gain.value = index === 0 ? 0.24 : index === 3 ? 0.12 : 0.18;
       osc.connect(voiceGain);
       voiceGain.connect(filter);
       osc.start();
