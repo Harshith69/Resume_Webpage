@@ -241,125 +241,49 @@ window.addEventListener('load', () => {
     }
   }
 
-  let audioContext = null;
+  // User-selected 60-second ambient track. Playback starts only after an explicit click.
+  const ambientAudio = new Audio('./assets/ambient.mp3');
+  ambientAudio.preload = 'auto';
+  ambientAudio.loop = true;
+  ambientAudio.volume = 0.65;
   let soundEnabled = false;
-  let masterGain = null;
-  let ambientNodes = [];
 
-  function getAudio() {
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return null;
-    if (!audioContext) {
-      audioContext = new AudioCtx();
-      masterGain = audioContext.createGain();
-      masterGain.gain.value = 0.72;
-      masterGain.connect(audioContext.destination);
-    }
-    if (audioContext.state === 'suspended') audioContext.resume();
-    return audioContext;
-  }
-
-  // Original, softly layered ambient tones; no external audio files or copyrighted music.
-  function startAmbient() {
-    const ctx = getAudio();
-    if (!ctx || ambientNodes.length) return;
-
-    const pad = ctx.createGain();
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 900;
-    filter.Q.value = 0.65;
-    pad.gain.setValueAtTime(0.0001, ctx.currentTime);
-    pad.gain.exponentialRampToValueAtTime(0.16, ctx.currentTime + 2.2);
-    filter.connect(pad);
-    pad.connect(masterGain);
-
-    // A warm, slowly shifting A-minor-inspired pad.
-    [110, 164.81, 220, 329.63].forEach((frequency, index) => {
-      const osc = ctx.createOscillator();
-      const voiceGain = ctx.createGain();
-      osc.type = index === 3 ? 'sine' : 'triangle';
-      osc.frequency.value = frequency;
-      osc.detune.value = index % 2 === 0 ? -4 : 4;
-      voiceGain.gain.value = index === 0 ? 0.24 : index === 3 ? 0.12 : 0.18;
-      osc.connect(voiceGain);
-      voiceGain.connect(filter);
-      osc.start();
-      ambientNodes.push(osc, voiceGain);
-    });
-
-    // Very slow filter movement gives the background a subtle living texture.
-    const lfo = ctx.createOscillator();
-    const lfoDepth = ctx.createGain();
-    lfo.type = 'sine';
-    lfo.frequency.value = 0.075;
-    lfoDepth.gain.value = 150;
-    lfo.connect(lfoDepth);
-    lfoDepth.connect(filter.frequency);
-    lfo.start();
-    ambientNodes.push(lfo, lfoDepth, filter, pad);
-  }
-
-  function stopAmbient() {
-    if (!audioContext || !ambientNodes.length) return;
-    const pad = ambientNodes[ambientNodes.length - 1];
-    const ctx = audioContext;
-    if (pad?.gain) {
-      pad.gain.cancelScheduledValues(ctx.currentTime);
-      pad.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.35);
-    }
-    const nodes = ambientNodes.slice();
-    ambientNodes = [];
-    window.setTimeout(() => {
-      nodes.forEach(node => {
-        try { if (typeof node.stop === 'function') node.stop(); } catch (_) {}
-        try { node.disconnect(); } catch (_) {}
-      });
-    }, 1500);
-  }
-
-  function tone(frequency, duration = .055, type = 'sine', volume = .16) {
-    if (!soundEnabled) return;
-    const ctx = getAudio();
-    if (!ctx || !masterGain) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(frequency, ctx.currentTime);
-    gain.gain.setValueAtTime(.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(volume, ctx.currentTime + .008);
-    gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + duration);
-    osc.connect(gain);
-    gain.connect(masterGain);
-    osc.start();
-    osc.stop(ctx.currentTime + duration + .015);
-  }
-
-  soundButton?.addEventListener('click', () => {
-    soundEnabled = !soundEnabled;
-    soundButton.setAttribute('aria-pressed', String(soundEnabled));
-    soundButton.setAttribute('aria-label', soundEnabled ? 'Turn ambient sound off' : 'Turn ambient sound on');
+  function syncSoundButton() {
+    soundButton?.setAttribute('aria-pressed', String(soundEnabled));
+    soundButton?.setAttribute('aria-label', soundEnabled ? 'Turn ambient sound off' : 'Turn ambient sound on');
     if (soundLabel) soundLabel.textContent = soundEnabled ? 'AMBIENCE ON' : 'SOUND OFF';
+  }
 
-    if (soundEnabled) {
-      getAudio();
-      startAmbient();
-      tone(523.25, .11, 'sine', .12);
-      window.setTimeout(() => tone(783.99, .14, 'sine', .09), 75);
+  soundButton?.addEventListener('click', async () => {
+    if (!soundEnabled) {
+      try {
+        await ambientAudio.play();
+        soundEnabled = true;
+        syncSoundButton();
+      } catch (error) {
+        soundEnabled = false;
+        syncSoundButton();
+        console.warn('Ambient audio could not be started:', error);
+      }
     } else {
-      stopAmbient();
+      soundEnabled = false;
+      ambientAudio.pause();
+      ambientAudio.currentTime = 0;
+      syncSoundButton();
     }
   });
 
-  document.querySelectorAll('a,button,.project-card').forEach(el => {
-    el.addEventListener('pointerenter', () => tone(880, .025, 'sine', .055), { passive: true });
-    el.addEventListener('click', () => tone(440, .045, 'triangle', .12), { passive: true });
+  // Do not play audio while the page is in the background.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (!ambientAudio.paused) ambientAudio.pause();
+    } else if (soundEnabled) {
+      ambientAudio.play().catch(() => {
+        soundEnabled = false;
+        syncSoundButton();
+      });
+    }
   });
 
-  // Pause the ambient layer when the tab is hidden; resume when it is visible.
-  document.addEventListener('visibilitychange', () => {
-    if (!audioContext) return;
-    if (document.hidden && audioContext.state === 'running') audioContext.suspend();
-    else if (!document.hidden && soundEnabled && audioContext.state === 'suspended') audioContext.resume();
-  });
+  syncSoundButton();
 })();
