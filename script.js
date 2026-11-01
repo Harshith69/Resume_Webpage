@@ -64,34 +64,71 @@ const animObs = new IntersectionObserver((entries) => {
 animEls.forEach(el => animObs.observe(el));
 
 // =========================================================
-// Section scene changes: one-time torn-edge reveal on entry
+// =========================================================
+// Section-to-section cinematic wipe
+// Trigger when an incoming section reaches the middle of the
+// viewport, so the motion is visible while the boundary moves.
 // =========================================================
 (() => {
-  const sceneSections = document.querySelectorAll('section:not(.hero)');
-  if (!('IntersectionObserver' in window) || !sceneSections.length) {
-    sceneSections.forEach(section => section.classList.add('scene-section', 'scene-entered'));
-    return;
+  const sceneSections = [...document.querySelectorAll('section:not(.hero)')];
+  if (!sceneSections.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const wipe = document.createElement('div');
+  wipe.className = 'scene-transition-wipe';
+  wipe.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(wipe);
+
+  function playWipe(section) {
+    const nextBackground = getComputedStyle(section).backgroundColor;
+    wipe.style.setProperty('--wipe-color', nextBackground || '#f0f3f1');
+    wipe.classList.remove('is-running');
+    // Restart the animation reliably when two sections enter in quick succession.
+    void wipe.offsetWidth;
+    wipe.classList.add('is-running');
   }
 
-  const sceneObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('scene-entered');
-      sceneObserver.unobserve(entry.target);
-    });
-  }, {
-    threshold: 0.12,
-    rootMargin: '-6% 0px -18% 0px'
+  wipe.addEventListener('animationend', () => {
+    wipe.classList.remove('is-running');
   });
 
-  sceneSections.forEach(section => {
-    section.classList.add('scene-section');
-    sceneObserver.observe(section);
-  });
+  if (!('IntersectionObserver' in window)) return;
+
+  const seenSections = new WeakSet();
+
+  function createSceneObserver() {
+    // IntersectionObserver percentages resolve against root width, not height.
+    // Use pixel offsets calculated from viewport height to keep a real trigger zone.
+    const topInset = Math.round(window.innerHeight * 0.52);
+    const bottomInset = Math.round(window.innerHeight * 0.32);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting || seenSections.has(entry.target)) return;
+        seenSections.add(entry.target);
+        entry.target.classList.add('scene-section', 'scene-entered');
+        playWipe(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.01,
+      rootMargin: `-${topInset}px 0px -${bottomInset}px 0px`
+    });
+
+    sceneSections.forEach(section => {
+      section.classList.add('scene-section');
+      if (!seenSections.has(section)) observer.observe(section);
+    });
+    return observer;
+  }
+
+  let sceneObserver = createSceneObserver();
+  window.addEventListener('resize', () => {
+    sceneObserver.disconnect();
+    sceneObserver = createSceneObserver();
+  }, { passive: true });
 })();
 
-
-// ===================================
 // Stat Counter Animation
 // ===================================
 const statNums = document.querySelectorAll('.stat-num');
