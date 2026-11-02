@@ -65,14 +65,13 @@ animEls.forEach(el => animObs.observe(el));
 
 // =========================================================
 // =========================================================
-// Section-to-section cinematic wipe
-// Trigger when an incoming section reaches the middle of the
-// viewport, so the motion is visible while the boundary moves.
+// =========================================================
+// Reliable section-to-section torn-paper wipe
+// Fires once when each incoming section enters the viewport.
 // =========================================================
 (() => {
   const sceneSections = [...document.querySelectorAll('section:not(.hero)')];
   if (!sceneSections.length) return;
-
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const wipe = document.createElement('div');
@@ -80,53 +79,55 @@ animEls.forEach(el => animObs.observe(el));
   wipe.setAttribute('aria-hidden', 'true');
   document.body.appendChild(wipe);
 
+  let animationTimer = 0;
   function playWipe(section) {
     const nextBackground = getComputedStyle(section).backgroundColor;
     wipe.style.setProperty('--wipe-color', nextBackground || '#f0f3f1');
     wipe.classList.remove('is-running');
-    // Restart the animation reliably when two sections enter in quick succession.
     void wipe.offsetWidth;
     wipe.classList.add('is-running');
+
+    window.clearTimeout(animationTimer);
+    animationTimer = window.setTimeout(() => {
+      wipe.classList.remove('is-running');
+    }, 1100);
   }
 
-  wipe.addEventListener('animationend', () => {
-    wipe.classList.remove('is-running');
-  });
-
-  if (!('IntersectionObserver' in window)) return;
+  if (!('IntersectionObserver' in window)) {
+    // Scroll fallback for older browsers.
+    let lastSection = null;
+    const checkSections = () => {
+      const triggerY = window.innerHeight * 0.72;
+      const current = sceneSections.find(section => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= triggerY && rect.bottom > triggerY;
+      });
+      if (current && current !== lastSection) {
+        lastSection = current;
+        playWipe(current);
+      }
+    };
+    window.addEventListener('scroll', checkSections, { passive: true });
+    checkSections();
+    return;
+  }
 
   const seenSections = new WeakSet();
-
-  function createSceneObserver() {
-    // IntersectionObserver percentages resolve against root width, not height.
-    // Use pixel offsets calculated from viewport height to keep a real trigger zone.
-    const topInset = Math.round(window.innerHeight * 0.52);
-    const bottomInset = Math.round(window.innerHeight * 0.32);
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting || seenSections.has(entry.target)) return;
-        seenSections.add(entry.target);
-        entry.target.classList.add('scene-section', 'scene-entered');
-        playWipe(entry.target);
-        observer.unobserve(entry.target);
-      });
-    }, {
-      threshold: 0.01,
-      rootMargin: `-${topInset}px 0px -${bottomInset}px 0px`
+  const sceneObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || seenSections.has(entry.target)) return;
+      seenSections.add(entry.target);
+      entry.target.classList.add('scene-section');
+      playWipe(entry.target);
+      sceneObserver.unobserve(entry.target);
     });
+  }, {
+    threshold: 0.01
+    // Deliberately keep the default viewport root: no percentage margins
+    // or viewport-height calculations that can collapse the trigger area.
+  });
 
-    sceneSections.forEach(section => {
-      section.classList.add('scene-section');
-      if (!seenSections.has(section)) observer.observe(section);
-    });
-    return observer;
-  }
-
-  let sceneObserver = createSceneObserver();
-  window.addEventListener('resize', () => {
-    sceneObserver.disconnect();
-    sceneObserver = createSceneObserver();
-  }, { passive: true });
+  sceneSections.forEach(section => sceneObserver.observe(section));
 })();
 
 // Stat Counter Animation
