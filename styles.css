@@ -1062,8 +1062,9 @@ html,body{background:#f7f6f2;color:#172b3a}
     max-height: 170px;
   }
 }
-.scene-transition-wipe { display: none !important; }
-
+@media (prefers-reduced-motion: reduce) {
+  .scene-transition-wipe { display: none !important; }
+}
 
 /* Keep section labels readable even if an animation observer is interrupted. */
 .section-big-title[data-anim] {
